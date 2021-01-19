@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Product>
+
+
+@{
+    ViewBag.Title = "Control Panel: Products";
+    Layout = "_AdminLayout";
+}
+
+<div class="mt-5 text-center">
+    <p class="text-center mt-3 mb-4" style="font-size:2.3em;font-weight:bolder;">
+        Admin panel:
+        <span class="badge badge-light badge-pill" style="font-size:0.9em;">Product, Orders, Application management</span>
+    </p>
+</div>
+
+<br />
+
+<div class="container mt-2">
+
+    <div class="container">
+
+        @if (Model.Count() == 0)
+        {
+            <div class="text-center m-2">
+                <form asp-action="SeedDatabase" method="post">
+                    <button type="submit" class="btn btn-danger">Seed database.</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <span class="badge badge-pill badge-light text-center mt-3 mb-3" style="font-size:2.3em;">Products: @Model.Count()</span>
+        }
+
+        <div class="card p-5">
+            <table class="table" style="font-size:1.5em;">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Description</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1 -</th>
+                        <td>
+                            All products / services. Operations Add, Edit, Delete.
+                        </td>
+                        <td class="text-right">
+                            <a asp-action="AllProducts" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Products panel
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2 -</th>
+                        <td>
+                            Incoming Purchases / Orders
+                        </td>
+                        <td class="text-right">
+                            <a asp-controller="Order" asp-action="Index" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Orders
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3 -</th>
+                        <td>
+                            Database of all Orders / Purchases
+                        </td>
+                        <td class="text-right">
+                            <a asp-controller="Order" asp-action="ViewDataBase" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Data base: All orders
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4 -</th>
+                        <td>
+                            Edit application. Edit app name, about us page images and texts.
+                        </td>
+                        <td class="text-right">
+                            <a asp-action="EditInfo" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Edit application
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5 -</th>
+                        <td>
+                            Contacts. Operations Add, Edit, Delete.
+                        </td>
+                        <td class="text-right">
+                            <a asp-action="AddressList" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Panel: Contacts
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6 -</th>
+                        <td>
+                            Social links. Operations Add, Edit, Delete.
+                        </td>
+                        <td class="text-right">
+                            <a asp-action="SocialList" class="btn btn-outline-success m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Panel: Social addresses
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr />
+        <br />
+
+        <p class="text-center mt-3 mb-4" style="font-size:2.3em;font-weight:bolder;">Control panel: 
+            <span class="badge badge-light badge-pill" style="font-size:0.9em;">Administrators, Employees</span>
+        </p>
+
+        <div class="card p-5">
+            <table class="table" style="font-size:1.5em;">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Description</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1 - </th>
+                        <td>
+                            User panel. Operations Add, Edit, Delete.
+                        </td>
+                        <td class="text-right">
+                            <a asp-controller="User" asp-action="Index" class="btn btn-outline-warning m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Users
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2 - </th>
+                        <td>
+                            Role panel. Activities Add, Change, and Remove Roles for Users
+                        </td>
+                        <td class="text-right">
+                            <a asp-controller="Role" asp-action="Index" class="btn btn-outline-warning m-1 w-75" style="font-size:0.9em;" target="_blank">
+                                Roles
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+        <hr />
+        <a asp-controller="Product" asp-action="List" class="btn btn-primary m-1" style="font-size:1.6em;" target="_blank">
+            Back to application
+        </a>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link href="~/css/fontawesome.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
+</head>
+<body class="container-fluid m-1 p-1">
+    <div class="row">
+        <h4 class="col-sm-10">@ViewBag.Title</h4>
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="col-sm custom-control-inline">
+                <p class="mr-1 mt-2" style="font-size:1em; text-decoration-line:underline;">Hello @User.Identity.Name</p>
+                <a class="btn" asp-action="Logout" asp-controller="Account">
+                    <i class="fas fa-sign-out-alt" style="font-size:2em;"></i>
+                </a>
+            </div>
+        }
+    </div>
+
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["message"]
+        </div>
+    }
+    @RenderBody()
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+</body>
+</html>

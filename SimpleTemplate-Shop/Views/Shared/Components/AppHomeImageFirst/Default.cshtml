@@ -1,0 +1,8 @@
+﻿@model Info
+
+@{
+    var photoPath = "~/images/" + (Model.AppHomeImageFirst ?? "HomePageImgFirst.jpg");
+}
+
+@*<img class="card-img" src="@photoPath" asp-append-version="true" alt="" style="background:no-repeat 50% 50%" />*@
+<img src="@photoPath" asp-append-version="true" style="box-shadow: 2px 2px 7px #000000;" class="card-img-top" alt="...">

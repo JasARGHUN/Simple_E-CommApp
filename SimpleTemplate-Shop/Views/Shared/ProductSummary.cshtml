@@ -1,0 +1,41 @@
+﻿@model Product
+@{
+    var photoPath = "~/Images/" + (Model.Image ?? "someProduct1.jpg");
+}
+
+<div class="col-lg-4 col-md-9">
+    <div>
+        <a asp-controller="product" asp-action="details" asp-route-id="@Model.ProductID" 
+           class="btn btn-outline-secondary p-1 mt-2" style="box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.50); text-decoration:none;">
+            <form id="@Model.ProductID" asp-action="AddToCart"
+                  asp-controller="Cart" method="post">
+                <input type="hidden" asp-for="ProductID" />
+
+                <div class="card p-2 text-center border-0">
+                    <div class="m-1">
+                        <h3 class="border-bottom-0 text-black-50" style="font-size:1.8em;">
+                            @Model.Name
+                        </h3>
+                        <p class="border-bottom-0 text-black-50" style="text-decoration-line:underline; font-size:1.2em;">
+                            @Model.Category
+                        </p>
+                        <hr />
+                    </div>
+
+                    <img class="card-img-top" src="@photoPath" alt="" asp-append-version="true" />
+
+                    <hr />
+                    <h2 class=" mt-2">
+                        <span class="badge badge-pill badge-danger mt-1" style="float:right; border-radius:25px;">
+                            Price: @Model.ProductPrice
+                        </span>
+                    </h2>
+                </div>
+
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+            </form>
+        </a>
+        <hr />
+    </div>
+</div>

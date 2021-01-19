@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AppAddress>
+
+@{
+    ViewBag.Title = "Control panel: Our contacts";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th scope="col">City</th>
+                <th scope="col">Addresses</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+
+            <tbody>
+                <tr>
+                    <th>
+                        <img class="borderRadius border border-dark" src="~/images/@item.Picture" height="40" width="40" asp-append-version="true" />
+                    </th>
+                    <th>@item.City</th>
+                    <th>@item.Address</th>
+                    <th>@item.Phone</th>
+                    <th>@item.Email</th>
+
+                    <th class="text-right">
+                        <form asp-action="DeleteAddress" asp-route-id="@item.Id" method="post">
+                            <a class="btn btn-outline-warning" asp-action="EditAppAddressData" asp-route-id="@item.Id">Edit</a>
+                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Delete: @item.Address?')">
+                                Delete
+                            </button>
+                        </form>
+                    </th>
+                </tr>
+            </tbody>
+        }
+    </table>
+    <a asp-action="CreateAppAddressData" class="btn btn-outline-success" style="font-size:1.5em;">Add</a>
+    <a asp-action="Index" class="btn btn-outline-primary" style="font-size:1.5em;">Back</a>
+</div>

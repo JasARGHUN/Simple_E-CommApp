@@ -1,0 +1,117 @@
+﻿@model ProductEditViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<div class="container mt-5 p-3">
+    <div class="card m-2 p-2">
+        <p class="text-center" style="font-size:2em; font-weight:bolder; text-decoration-line:underline;">Selected: @Model.Name</p>
+        <hr />
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductID" />
+            <input type="hidden" asp-for="ExistingPhotoPath" />
+            <input type="hidden" asp-for="ExistingPhotoPath2" />
+            <input type="hidden" asp-for="ExistingPhotoPath3" />
+            <div class="form-group">
+                <label asp-for="Name" style="font-weight:bolder; font-size:1.5em;"></label>
+                <div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <hr />
+            <div class="card-body border">
+                <div class="form-group">
+                    <h4>
+                        <label style="font-weight:bolder;">First picture:</label>
+                    </h4>
+                    <div class="custom-file">
+                        <input multiple asp-for="Images" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Click here to chage photo...</label>
+                    </div>
+                    <hr />
+                    <h4>
+                        <label style="font-weight:bolder;">Second picture:</label>
+                    </h4>
+                    <div class="custom-file">
+                        <input multiple asp-for="Images2" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Click here to chage photo...</label>
+                    </div>
+                    <hr />
+                    <h4>
+                        <label style="font-weight:bolder;">Third picture:</label>
+                    </h4>
+                    <div class="custom-file">
+                        <input multiple asp-for="Images3" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Click here to chage photo...</label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Description" style="font-weight:bolder; font-size:1.5em;"></label>
+                <div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <textarea asp-for="Description" class="form-control" rows="7" cols="200"></textarea>
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label style="font-weight:bolder;">Manufacturer:</label>
+                </h4>
+                <div><span asp-validation-for="Manufacturer" class="text-danger"></span></div>
+                <input asp-for="Manufacturer" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" style="font-weight:bolder; font-size:1.5em;"></label>
+                <input asp-for="Category" class="form-control" />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label style="font-weight:bolder;">Date of manufacture:</label>
+                </h4>
+                <div><span asp-validation-for="DateOfManufacture" class="text-danger"></span></div>
+                <input asp-for="DateOfManufacture" class="form-control" />
+            </div>
+            <hr />
+            <div class="form-group">
+                <h4>
+                    <label style="font-weight:bolder;">Quantity in stock:</label>
+                </h4>
+                <div><span asp-validation-for="QuantityInStock" class="text-danger"></span></div>
+                <input asp-for="QuantityInStock" class="form-control" />
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Price" style="font-weight:bolder; font-size:1.5em;"></label>
+                <div>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <input asp-for="Price" class="form-control" />
+            </div>
+            <hr />
+            <div class="text-center">
+                <button class="btn btn-primary" style="font-size:1.5em;" type="submit">Save</button>
+                <a asp-action="AllProducts" style="font-size:1.5em;" class="btn btn-warning">Cancel</a>
+            </div>
+            @section Scripts{
+                <script>
+                    $(document).ready(function () {
+                        $('.custom-file-input').on("change", function () {
+                            var fileLabel = $(this).next('.custom-file-label');
+                            var files = $(this)[0].files;
+                            if (files.length > 1) {
+                                fileLabel.html(files.length + ' files selected');
+                            }
+                            else if (files.length == 1) {
+                                fileLabel.html(files[0].name);
+                            }
+                        });
+                    });
+                </script>
+            }
+        </form>
+    </div>
+</div>

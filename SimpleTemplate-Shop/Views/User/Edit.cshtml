@@ -1,0 +1,31 @@
+﻿@model EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <p class="text-center" style="font-size:2em; font-weight:bolder;">Edit user: 
+        <span class="badge badge-pill badge-light" style="font-size:1em;">@Model.Email</span>
+    </p>
+
+    <div class="card text-center m-2 p-2">
+        <form asp-action="Edit" asp-controller="User" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Email" class="float-left" style="font-size:1.7em;">Account:</label>
+                <input type="text" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" style="font-size:1.3em;" />
+                <a asp-controller="User" asp-action="Index" class="btn btn-primary" style="font-size:1.3em;">Back</a>
+            </div>
+
+        </form>
+    </div>
+</div>

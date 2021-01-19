@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewBag.Title = "Control panel: Users";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <p class="mt-3 text-center" style="font-size:2em; font-weight:bolder; text-decoration-line:underline;">User panel</p>
+
+    <table class="table" style="font-size:1.5em;">
+        <thead>
+            <tr>
+                <th scope="col">Account</th>
+                <th scope="col" class="text-right">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td class="text-right">
+                        <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id" style="font-size:1em;">Edit</a> |
+                            <a class="btn btn-sm btn-warning" asp-action="ChangePassword" asp-route-id="@user.Id" style="font-size:1em;">Change password</a> |
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Delete: @user.Email?')" style="font-size:1em;">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+    <div class="text-center">
+        <a asp-action="Create" class="btn btn-warning m-1" style="font-size:1.3em;">Add user</a>
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary m-1" style="font-size:1.3em;">Back</a>
+    </div>
+</div>
