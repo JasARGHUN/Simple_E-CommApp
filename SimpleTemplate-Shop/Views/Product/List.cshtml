@@ -65,7 +65,7 @@
     </div>
 
     <div class="row pb-5">
-        @foreach (var p in Model.Products.OrderByDescending(x => x.ProductID))
+        @foreach (var p in Model.Products)
         {
             @await Html.PartialAsync("ProductSummary", p);
         }
@@ -90,46 +90,11 @@
 
     <nav class="btn-group" aria-label="Suppliers navigation example" style="cursor:pointer;">
 
-        @if (Model.PagingInfo.HasPreviousPage)
-        {
-            <a asp-action="List"
-               asp-route-page="@(Model.PagingInfo.PageNumber - 1)"
-               asp-route-name="@(Model.FilterViewModel.SelectedName)"
-               asp-route-company="@(Model.FilterViewModel.SelectedCategory)"
-               asp-route-sortorder="@(Model.SortViewModel.Current)"
-               style="margin-top:18px;" class="mr-2">
-                <i class="fas fa-chevron-left" style="font-size:39px; color:lightslategrey;"></i>
-            </a>
-        }
-        else
-        {
-            <a style="margin-top:18px;" class="mr-2">
-                <i class="fas fa-chevron-left" style="font-size:39px; color:lavender;"></i>
-            </a>
-        }
-
         <page-link page-model="Model.PagingInfo" page-action="List"
                    page-url-name="@(Model.FilterViewModel.SelectedName)"
                    page-url-company="@(Model.FilterViewModel.SelectedCategory)"
                    page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
 
-        @if (Model.PagingInfo.HasNextPage)
-        {
-            <a asp-action="List"
-               asp-route-page="@(Model.PagingInfo.PageNumber + 1)"
-               asp-route-name="@(Model.FilterViewModel.SelectedName)"
-               asp-route-company="@(Model.FilterViewModel.SelectedCategory)"
-               asp-route-sortorder="@(Model.SortViewModel.Current)"
-               style="margin-top:18px;" class="ml-2">
-               <i class="fas fa-chevron-right" style="font-size:39px; color:lightslategrey;"></i>
-            </a>
-        }
-        else
-        {
-            <a style="margin-top:18px;" class="ml-2">
-               <i class="fas fa-chevron-right" style="font-size:39px; color:lavender;"></i>
-            </a>
-        }
     </nav>
 
 </div>
