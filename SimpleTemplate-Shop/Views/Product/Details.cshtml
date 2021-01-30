@@ -103,7 +103,9 @@
                     <div class="col-sm mt-3">
                         <h2 class="text-center">Description</h2>
                         <br />
-                        <p class="card-text mb-2" style="font-size:1.5em;">@Model.ProductDescription</p>
+                        <p class="card-text mb-2" style="font-size:1.5em;">
+                            @Html.Raw(Model.ProductDescription)
+                        </p>
                     </div>
 
                 </div>
