@@ -19,7 +19,7 @@
                     <h3 class="mt-1 ml-2" style="text-decoration:underline; font-size:2.3em;">@Model.Category / @Model.Name</h3>
                 </div>
 
-                <div class="row m-2 p-2" style="background-color:aliceblue; box-shadow: 2px 2px 7px #000000;">
+                <div class="row m-2 p-2" style="box-shadow: 2px 2px 7px #000000;">
                     <div class="col-sm p-2">
 
                         <div id="carouselExampleIndicators" class="carousel slide mb-2" data-ride="carousel">
@@ -106,6 +106,14 @@
                         <p class="card-text mb-2" style="font-size:1.5em;">
                             @Html.Raw(Model.ProductDescription)
                         </p>
+                        <hr />
+                        <p>Type: @Model.Type</p>
+                        <p>Processor: @Model.Processor</p>
+                        <p>RAM: @Model.RAM</p>
+                        <p>Power Supply: @Model.PowerSupply</p>
+                        <p>Storage Device: @Model.StorageDevice</p>
+                        <p>Video Card: @Model.VideoCard</p>
+                        <p>Operating System: @Model.OperatingSystem</p>
                     </div>
 
                 </div>
