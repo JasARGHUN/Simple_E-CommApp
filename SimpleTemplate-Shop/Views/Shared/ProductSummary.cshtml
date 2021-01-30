@@ -1,15 +1,12 @@
 ﻿@model Product
-@{
-    var photoPath = "~/Images/" + (Model.Image ?? "someProduct1.jpg");
-}
 
 <div class="col-lg-4 col-md-9">
     <div>
-        <a asp-controller="product" asp-action="details" asp-route-id="@Model.ProductID" 
+        <a asp-controller="product" asp-action="details" asp-route-id="@Model.Id" 
            class="btn btn-outline-secondary p-1 mt-2" style="box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.50); text-decoration:none;">
-            <form id="@Model.ProductID" asp-action="AddToCart"
+            <form id="@Model.Id" asp-action="AddToCart"
                   asp-controller="Cart" method="post">
-                <input type="hidden" asp-for="ProductID" />
+                <input type="hidden" asp-for="Id" />
 
                 <div class="card p-2 text-center border-0">
                     <div class="m-1">
@@ -22,7 +19,7 @@
                         <hr />
                     </div>
 
-                    <img class="card-img-top" src="@photoPath" alt="" asp-append-version="true" />
+                    <img class="card-img-top" src="@Model.Image" alt="" asp-append-version="true" />
 
                     <hr />
                     <h2 class=" mt-2">

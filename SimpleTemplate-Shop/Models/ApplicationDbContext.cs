@@ -8,20 +8,21 @@ namespace SimpleTemplate_Shop.Models
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Info> Infos { get; set; }
         public DbSet<AppAddress> AppAddresses { get; set; }
         public DbSet<AppSocialAddress> AppSocialAddresses { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
     }
 }

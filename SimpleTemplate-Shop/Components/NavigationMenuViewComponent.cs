@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Models.Repository.IRepository;
 using System.Linq;
 
 namespace SimpleTemplate_Shop.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
-        private IProductRepository _repository;
+        private IUnitOfWork _repository;
 
-        public NavigationMenuViewComponent(IProductRepository repository)
+        public NavigationMenuViewComponent(IUnitOfWork repository)
         {
             _repository = repository;
         }
@@ -16,7 +16,7 @@ namespace SimpleTemplate_Shop.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
-            return View(_repository.Products
+            return View(_repository.Product.GetAll()
                 .Select(x => x.Category)
                 .Distinct()
                 .OrderBy(x => x));

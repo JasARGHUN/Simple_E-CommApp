@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using SimpleTemplate_Shop.Models;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Models.Repository.IRepository;
 using SimpleTemplate_Shop.Models.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,9 +13,9 @@ namespace SimpleTemplate_Shop.Controllers
 {
     public class ProductController : Controller
     {
-        private IProductRepository _repository;
+        private IUnitOfWork _repository;
         public int pageSize = 9; // How many objects are on the List page.
-        public ProductController(IProductRepository repository)
+        public ProductController(IUnitOfWork repository)
         {
             _repository = repository;
         }
@@ -21,8 +23,8 @@ namespace SimpleTemplate_Shop.Controllers
         public async Task<IActionResult> List(int? product, string name, string category, int page = 1,
             SortState sortOrder = SortState.NameAsc)
         {
-            IQueryable<Product> items = _repository.Products.Where(p => category == null || p.Category == category)
-                .OrderBy(p => p.ProductID);
+            IEnumerable<Product> items = _repository.Product.GetAll().Where(p => category == null || p.Category == category)
+                .OrderBy(p => p.Id);
 
             if (!String.IsNullOrEmpty(name))
             {
@@ -45,26 +47,26 @@ namespace SimpleTemplate_Shop.Controllers
                     items = items.OrderBy(s => s.Name); break;
             }
 
-            var count = await items.CountAsync();
-            var item = await items.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            var count = items.Count();
+            var item = items.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             PagingInfo pagingInfo = new PagingInfo(count, page, pageSize);
 
-            ProductsListViewModel productsListView = new ProductsListViewModel
+            ProductViewModel productsListView = new ProductViewModel
             {
                 PagingInfo = pagingInfo,
                 SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(_repository.Products.ToList(), product, name),
+                FilterViewModel = new FilterViewModel(_repository.Product.GetAll().ToList(), product, name),
                 Products = item
             };
 
             return View(productsListView);
         }
-        
+
 
         public async Task<ViewResult> Details(int? id)
         {
-            Product product = await _repository.GetProduct(id.Value);
+            Product product = await _repository.Product.Get(id.Value);
 
             if (product == null)
             {

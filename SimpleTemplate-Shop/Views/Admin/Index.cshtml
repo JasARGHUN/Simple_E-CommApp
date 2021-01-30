@@ -6,14 +6,6 @@
     Layout = "_AdminLayout";
 }
 
-<div class="mt-5 text-center">
-    <p class="text-center mt-3 mb-4" style="font-size:2.3em;font-weight:bolder;">
-        Admin panel:
-        <span class="badge badge-light badge-pill" style="font-size:0.9em;">Product, Orders, Application management</span>
-    </p>
-</div>
-
-<br />
 
 <div class="container mt-2">
 
@@ -115,7 +107,8 @@
         <hr />
         <br />
 
-        <p class="text-center mt-3 mb-4" style="font-size:2.3em;font-weight:bolder;">Control panel: 
+        <p class="text-center mt-3 mb-4" style="font-size:2.3em;font-weight:bolder;">
+            Control panel:
             <span class="badge badge-light badge-pill" style="font-size:0.9em;">Administrators, Employees</span>
         </p>
 
@@ -164,3 +157,8 @@
         </a>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/Product.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}

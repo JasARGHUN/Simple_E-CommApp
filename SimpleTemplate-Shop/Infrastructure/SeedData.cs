@@ -24,7 +24,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 50,
                         Manufacturer = "Manufacturer-1",
                         DateOfManufacture = "20.12.2020",
-                        QuantityInStock = 2
+                        QuantityInStock = 2,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -37,7 +44,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 28,
                         Manufacturer = "Manufacturer-2",
                         DateOfManufacture = "05.12.2020",
-                        QuantityInStock = 5
+                        QuantityInStock = 5,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -50,7 +64,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 73,
                         Manufacturer = "Manufacturer-3",
                         DateOfManufacture = "15.12.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 2,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -63,7 +84,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 25,
                         Manufacturer = "Manufacturer-4",
                         DateOfManufacture = "29.12.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 1,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -76,7 +104,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 17,
                         Manufacturer = "Manufacturer-5",
                         DateOfManufacture = "08.12.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 5,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -89,7 +124,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 52,
                         Manufacturer = "Manufacturer-6",
                         DateOfManufacture = "17.09.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 0,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -102,7 +144,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 23,
                         Manufacturer = "Manufacturer-7",
                         DateOfManufacture = "22.03.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 2,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -115,7 +164,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 75,
                         Manufacturer = "Manufacturer-10",
                         DateOfManufacture = "27.07.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 0,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -128,7 +184,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 156,
                         Manufacturer = "Manufacturer-8",
                         DateOfManufacture = "11.01.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 1,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -141,7 +204,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 285,
                         Manufacturer = "Manufacturer-9",
                         DateOfManufacture = "23.06.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 0,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -154,7 +224,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 85,
                         Manufacturer = "Manufacturer-3",
                         DateOfManufacture = "13.12.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 0,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -167,7 +244,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 185,
                         Manufacturer = "Manufacturer-4",
                         DateOfManufacture = "27.10.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 5,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     },
                     new Product
                     {
@@ -180,7 +264,14 @@ namespace SimpleTemplate_Shop.Infrastructure
                         ProductPrice = 266,
                         Manufacturer = "Manufacturer-3",
                         DateOfManufacture = "12.01.2020",
-                        QuantityInStock = 0
+                        QuantityInStock = 0,
+                        Type = "Midle Tower",
+                        Processor = "i5-10400f",
+                        RAM = "16",
+                        PowerSupply = "650",
+                        StorageDevice = "480 SSD",
+                        VideoCard = "8",
+                        OperatingSystem = "Windows 10 PRO"
                     }
 
                 );

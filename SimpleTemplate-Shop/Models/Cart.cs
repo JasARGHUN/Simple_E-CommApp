@@ -10,7 +10,7 @@ namespace SimpleTemplate_Shop.Models
         public virtual void AddItem(Product product, int quantity, decimal sum)
         {
             CartLine line = lineCollection
-                .Where(p => p.Product.ProductID == product.ProductID)
+                .Where(p => p.Product.Id == product.Id)
                 .FirstOrDefault();
             if (line == null)
             {
@@ -31,7 +31,7 @@ namespace SimpleTemplate_Shop.Models
         public virtual void RemoveItem(Product product, int quantity, decimal sum)
         {
             CartLine line = lineCollection
-                .Where(p => p.Product.ProductID == product.ProductID)
+                .Where(p => p.Product.Id == product.Id)
                 .FirstOrDefault();
 
             line.Quantity -= quantity;
@@ -44,7 +44,7 @@ namespace SimpleTemplate_Shop.Models
         }
 
         public virtual void RemoveLine(Product product) =>
-            lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
+            lineCollection.RemoveAll(l => l.Product.Id == product.Id);
 
         public virtual decimal ComputeTotalValue()
         {

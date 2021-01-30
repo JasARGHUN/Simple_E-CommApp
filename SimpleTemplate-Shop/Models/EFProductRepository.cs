@@ -1,48 +1,48 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using SimpleTemplate_Shop.Models.Repository;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SimpleTemplate_Shop.Models
 {
-    public class EFProductRepository : IProductRepository
+    public class EFProductRepository : Repository<Product>, IProductRepository
     {
-        private ApplicationDbContext _context;
-        public EFProductRepository(ApplicationDbContext context)
+        private readonly ApplicationDbContext _context;
+
+        public EFProductRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
-        public IQueryable<Product> Products => _context.Products;
-        public async Task<Product> Add(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-            return product;
-        }
 
-        public async Task<Product> DeleteProduct(int productID)
+        public async Task UpdateAsync(Product item)
         {
-            Product dbEntry = await _context.Products
-                .FirstOrDefaultAsync(p => p.ProductID == productID);
-            if (dbEntry != null)
+            var model = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.Id);
+
+            if (model != null)
             {
-                _context.Products.Remove(dbEntry);
-                _context.SaveChanges();
+                if (item.Image != null)
+                {
+                    model.Image = item.Image;
+                }
+
+                model.Name = item.Name;
+                model.Manufacturer = item.Manufacturer;
+                model.ProductDescription = item.ProductDescription;
+                model.Category = item.Category;
+                model.ProductPrice = item.ProductPrice;
+                model.DateOfManufacture = item.DateOfManufacture;
+                model.QuantityInStock = item.QuantityInStock;
+
+                model.Type = item.Type;
+                model.Processor = item.Processor;
+                model.RAM = item.RAM;
+                model.PowerSupply = item.PowerSupply;
+                model.StorageDevice = item.StorageDevice;
+                model.VideoCard = item.VideoCard;
+                model.OperatingSystem = item.OperatingSystem;
             }
-            return dbEntry;
-        }
-
-        public async Task<Product> GetProduct(int? id)
-        {
-            return await _context.Products.FindAsync(id);
-        }
-
-        public async Task<Product> SaveProduct(Product productDataUpdate)
-        {
-            var prod = _context.Products.Attach(productDataUpdate);
-            prod.State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return productDataUpdate;
         }
     }
 }

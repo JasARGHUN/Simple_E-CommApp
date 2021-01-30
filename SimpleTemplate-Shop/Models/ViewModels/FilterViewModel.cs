@@ -7,7 +7,7 @@ namespace SimpleTemplate_Shop.Models.ViewModels
     {
         public FilterViewModel(List<Product> products, int? product, string name)
         {
-            products.Insert(0, new Product { Name = "All", ProductID = 0 });
+            products.Insert(0, new Product { Name = "All", Id = 0 });
             Products = new SelectList(products, "ProductID", "Name", product);
             SelectedProduct = product;
             SelectedName = name;

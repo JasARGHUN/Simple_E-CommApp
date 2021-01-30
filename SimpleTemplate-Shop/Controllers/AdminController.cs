@@ -9,17 +9,17 @@ using System.IO;
 using System;
 using SimpleTemplate_Shop.Models.Repository;
 using ReflectionIT.Mvc.Paging;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using SimpleTemplate_Shop.Infrastructure;
+using SimpleTemplate_Shop.Models.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
-        private readonly IProductRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IInfoRepository _infoRepository;
         private readonly IAppAddressRepository _addressRepository;
@@ -27,10 +27,10 @@ namespace SimpleTemplate_Shop.Controllers
 
         public int productInPage = 12; // Products/Objects count in AllProducts page
 
-        public AdminController(IProductRepository repository, IWebHostEnvironment hostingEnvironment, IInfoRepository infoRepository,
+        public AdminController(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnvironment, IInfoRepository infoRepository,
             IAppAddressRepository addressRepository, IAppDataRepository appRepository)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _hostingEnvironment = hostingEnvironment;
             _infoRepository = infoRepository;
             _addressRepository = addressRepository;
@@ -39,7 +39,7 @@ namespace SimpleTemplate_Shop.Controllers
 
         public ViewResult Index()
         {
-            var model = _repository.Products.ToList();
+            var model = _unitOfWork.Product.GetAll().ToList();
 
             return View(model);
         }
@@ -53,7 +53,7 @@ namespace SimpleTemplate_Shop.Controllers
 
         public ViewResult AllProducts(string filter, int page = 1, string sortExpression = "Name")
         {
-            var qry = _repository.Products.AsNoTracking().AsQueryable();
+            var qry = _unitOfWork.Product.GetAll();
 
             if (!string.IsNullOrWhiteSpace(filter))
             {
@@ -68,196 +68,144 @@ namespace SimpleTemplate_Shop.Controllers
             return View(model);
         }
 
-
-        #region Product
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
-        [HttpGet]
-        public async Task<ViewResult> Edit(int ProductID)
+        public async Task<IActionResult> Upsert(int? id)
         {
-            Product product = await _repository.GetProduct(ProductID);
-            ProductEditViewModel productEditViewModel = new ProductEditViewModel
+            ProductViewModel item = new ProductViewModel()
             {
-                ProductID = product.ProductID,
-                Name = product.Name,
-                Category = product.Category,
-                Description = product.ProductDescription,
-                Price = product.ProductPrice,
-                Manufacturer = product.Manufacturer,
-                DateOfManufacture = product.DateOfManufacture,
-                QuantityInStock = product.QuantityInStock,
-                ExistingPhotoPath = product.Image,
-                ExistingPhotoPath2 = product.Image2,
-                ExistingPhotoPath3 = product.Image3
+                Product = new Product(),
+                //CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                //{
+                //    Text = i.Name,
+                //    Value = i.Id.ToString()
+                //})
             };
-            TempData["message"] = $"Object {product.Name} was selected.";
-            return View(productEditViewModel);
+
+            if (id == null)
+            {
+                // This code for create
+                return View(item);
+            }
+
+            // This code for edit
+            item.Product = await _unitOfWork.Product.Get(id.GetValueOrDefault());
+
+            if (item.Product == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+
         }
 
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductEditViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(ProductViewModel item)
         {
             if (ModelState.IsValid)
             {
-                Product product = await _repository.GetProduct(model.ProductID);
-                product.Name = model.Name;
-                product.ProductPrice = model.Price;
-                product.ProductDescription = model.Description;
-                product.Category = model.Category;
-                product.Manufacturer = model.Manufacturer;
-                product.DateOfManufacture = model.DateOfManufacture;
-                product.QuantityInStock = model.QuantityInStock;
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
 
-                if (model.Images != null)
+                if (files.Count > 0)
                 {
-                    if (model.ExistingPhotoPath != null)
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\products");
+                    var extenstion = Path.GetExtension(files[0].FileName);
+
+                    if (item.Product.Image != null)
                     {
-                        string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
-                            "images", model.ExistingPhotoPath);
-                        System.IO.File.Delete(filePath);
+                        // Update data with image
+                        var imagePath = Path.Combine(webRootPath, item.Product.Image.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
                     }
 
-                    product.Image = ProcessUploadFile(model);
-                }
-                if (model.Images2 != null)
-                {
-                    if (model.ExistingPhotoPath2 != null)
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
                     {
-                        string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
-                            "images", model.ExistingPhotoPath2);
-                        System.IO.File.Delete(filePath);
+                        await files[0].CopyToAsync(fileStreams);
                     }
 
-                    product.Image2 = ProcessUploadFile2(model);
+                    item.Product.Image = @"\images\products\" + fileName + extenstion;
                 }
-                if (model.Images3 != null)
+                else
                 {
-                    if (model.ExistingPhotoPath3 != null)
+                    // Update data without update image
+                    if (item.Product.Id != 0)
                     {
-                        string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
-                            "images", model.ExistingPhotoPath3);
-                        System.IO.File.Delete(filePath);
+                        Product model = await _unitOfWork.Product.Get(item.Product.Id);
+                        item.Product.Image = model.Image;
                     }
-
-                    product.Image3 = ProcessUploadFile3(model);
                 }
-                _repository.SaveProduct(product);
-                TempData["message"] = $"Object {product.Name} was edited.";
-                return RedirectToAction("AllProducts");
+
+                if (item.Product.Id == 0)
+                {
+                    await _unitOfWork.Product.Add(item.Product);
+                }
+                else
+                {
+                    await _unitOfWork.Product.UpdateAsync(item.Product);
+                }
+
+                _unitOfWork.Save();
+
+                //TempData[SD.Success] = $"Completed!";
+
+                return RedirectToAction(nameof(Index));
             }
-            return View();
+            else
+            {
+                //item.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                //{
+                //    Text = i.Name,
+                //    Value = i.Id.ToString()
+                //});
+
+                if (item.Product.Id != 0)
+                {
+                    item.Product = await _unitOfWork.Product.Get(item.Product.Id);
+                }
+            }
+
+            return View(item);
         }
 
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        #region API CALLS
+
         [HttpGet]
-        public ViewResult Create()
+        public IActionResult GetAll()
         {
-            return View();
+            var allObj = _unitOfWork.Product.GetAll();
+            return Json(new { data = allObj });
         }
 
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
-        [HttpPost]
-        public IActionResult Create(ProductCreateViewModel model)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
         {
-            if (ModelState.IsValid)
-            {
-                string uniqueFileName = ProcessUploadFile(model);
-                string uniqueFileName2 = ProcessUploadFile2(model);
-                string uniqueFileName3 = ProcessUploadFile3(model);
-                var newProduct = new Product
-                {
-                    Name = model.Name,
-                    ProductDescription = model.Description,
-                    ProductPrice = model.Price,
-                    Category = model.Category,
-                    Manufacturer = model.Manufacturer,
-                    DateOfManufacture = model.DateOfManufacture,
-                    QuantityInStock = model.QuantityInStock,
-                    Image = uniqueFileName,
-                    Image2 = uniqueFileName2,
-                    Image3 = uniqueFileName3
-                };
+            var model = await _unitOfWork.Product.Get(id);
 
-                _repository.Add(newProduct);
-                TempData["message"] = $"{newProduct.Name} has be created";
-                return RedirectToAction("AllProducts");
+            if (model == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
             }
 
-            return View();
-        }
+            string webRootPath = _hostingEnvironment.WebRootPath;
 
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
-        [HttpPost]
-        public async Task<IActionResult> Delete(int productId)
-        {
-            Product deleteProduct = await _repository.DeleteProduct(productId);
-            if (deleteProduct != null)
+            var imagePath = Path.Combine(webRootPath, model.Image.TrimStart('\\'));
+
+            if (System.IO.File.Exists(imagePath))
             {
-                TempData["message"] = $"{deleteProduct.Name} was deleted";
-            }
-            return RedirectToAction("AllProducts");
-        }
-
-        private string ProcessUploadFile(ProductCreateViewModel model)
-        {
-            string uniqueFileName = null;
-            if (model.Images != null && model.Images.Count > 0)
-            {
-                foreach (IFormFile photo in model.Images)
-                {
-                    var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        photo.CopyTo(fileStream);
-                    }
-                }
+                System.IO.File.Delete(imagePath);
             }
 
-            return uniqueFileName;
+            await _unitOfWork.Product.Remove(model);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = $"The object {model.Name} has been deleted" });
         }
-        private string ProcessUploadFile2(ProductCreateViewModel model)
-        {
-            string uniqueFileName = null;
-            if (model.Images2 != null && model.Images2.Count > 0)
-            {
-                foreach (IFormFile photo in model.Images2)
-                {
-                    var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        photo.CopyTo(fileStream);
-                    }
-                }
-            }
-
-            return uniqueFileName;
-        }
-        private string ProcessUploadFile3(ProductCreateViewModel model)
-        {
-            string uniqueFileName = null;
-            if (model.Images3 != null && model.Images3.Count > 0)
-            {
-                foreach (IFormFile photo in model.Images3)
-                {
-                    var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        photo.CopyTo(fileStream);
-                    }
-                }
-            }
-
-            return uniqueFileName;
-        }
         #endregion
 
         #region App Info

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SimpleTemplate_Shop.Models.Repository;
 using SimpleTemplate_Shop.Infrastructure;
+using SimpleTemplate_Shop.Models.Repository.IRepository;
 
 namespace SimpleTemplate_Shop
 {
@@ -24,8 +25,9 @@ namespace SimpleTemplate_Shop
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                Configuration["Data:SimpleTemplate-Shop:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
@@ -33,9 +35,9 @@ namespace SimpleTemplate_Shop
 
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IProductRepository, EFProductRepository>();
-            services.AddTransient<IOrderRepository, EFOrderRepository>();
-            services.AddTransient<IInfoRepository, EFInfoRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IOrderRepository, EFOrderRepository>();
+            services.AddScoped<IInfoRepository, EFInfoRepository>();
             services.AddScoped<IAppAddressRepository, AppAddressRepository>();
             services.AddScoped<IAppDataRepository, AppDataRepository>();
             services.AddScoped<IDbInitializer, DbInitializer>();

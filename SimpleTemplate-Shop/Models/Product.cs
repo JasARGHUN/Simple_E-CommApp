@@ -6,7 +6,7 @@ namespace SimpleTemplate_Shop.Models
 {
     public class Product
     {
-        public int ProductID { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Object name field can't be empty...")]
         public string Name { get; set; }
@@ -30,7 +30,21 @@ namespace SimpleTemplate_Shop.Models
         public int QuantityInStock { get; set; }
 
         public string Image { get; set; }
-        public string Image2 { get; set; }
-        public string Image3 { get; set; }
+
+        // Product Description
+        [Required]
+        public string Type { get; set; }
+        [Required]
+        public string Processor { get; set; }
+        [Required]
+        public string RAM { get; set; }
+        [Required]
+        public string PowerSupply { get; set; }
+        [Required]
+        public string StorageDevice { get; set; }
+        [Required]
+        public string VideoCard { get; set; }
+        [Required]
+        public string OperatingSystem { get; set; }
     }
 }

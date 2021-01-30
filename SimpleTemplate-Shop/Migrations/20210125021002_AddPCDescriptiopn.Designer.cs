@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleTemplate_Shop.Models;
 
 namespace SimpleTemplate_Shop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210125021002_AddPCDescriptiopn")]
+    partial class AddPCDescriptiopn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,7 +395,7 @@ namespace SimpleTemplate_Shop.Migrations
 
             modelBuilder.Entity("SimpleTemplate_Shop.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -406,6 +408,12 @@ namespace SimpleTemplate_Shop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image3")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Manufacturer")
@@ -455,7 +463,7 @@ namespace SimpleTemplate_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductID");
 
                     b.ToTable("Products");
                 });

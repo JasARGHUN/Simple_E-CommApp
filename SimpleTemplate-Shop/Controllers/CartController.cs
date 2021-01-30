@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleTemplate_Shop.Models;
 using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Models.Repository.IRepository;
 using SimpleTemplate_Shop.Models.ViewModels;
 using System.Threading.Tasks;
 
@@ -9,10 +10,10 @@ namespace SimpleTemplate_Shop.Controllers
 {
     public class CartController : Controller
     {
-        private IProductRepository _repository;
+        private IUnitOfWork _repository;
         private Cart cart;
 
-        public CartController(IProductRepository repository, Cart cartService)
+        public CartController(IUnitOfWork repository, Cart cartService)
         {
             _repository = repository;
             cart = cartService;
@@ -27,10 +28,10 @@ namespace SimpleTemplate_Shop.Controllers
             });
         }
 
-        public async Task<RedirectToActionResult> AddToCart(int productId, string returnUrl, decimal sum)
+        public async Task<RedirectToActionResult> AddToCart(int id, string returnUrl, decimal sum)
         {
-            Product product = await _repository.Products
-                .FirstOrDefaultAsync(p => p.ProductID == productId);
+            Product product = _repository.Product
+                .GetFirstOrDefault(p => p.Id == id);
             sum = product.ProductPrice;
 
             if (product != null)
@@ -43,8 +44,8 @@ namespace SimpleTemplate_Shop.Controllers
 
         public async Task<RedirectToActionResult> RemoveFromCart(int productId, string returnUrl)
         {
-            Product product = await _repository.Products
-                .FirstOrDefaultAsync(p => p.ProductID == productId);
+            Product product = _repository.Product
+                .GetFirstOrDefault(p => p.Id == productId);
 
             if (product != null)
             {
@@ -61,8 +62,8 @@ namespace SimpleTemplate_Shop.Controllers
 
         public async Task<IActionResult> Plus(int productId)
         {
-            var product = await _repository.Products
-                .FirstOrDefaultAsync(p => p.ProductID == productId);
+            var product = _repository.Product
+                .GetFirstOrDefault(p => p.Id == productId);
 
             cart.AddItem(product, 1, product.ProductPrice);
 
@@ -71,8 +72,8 @@ namespace SimpleTemplate_Shop.Controllers
 
         public async Task<IActionResult> Minus(int productId)
         {
-            var product = await _repository.Products
-                .FirstOrDefaultAsync(p => p.ProductID == productId);
+            var product = _repository.Product
+                .GetFirstOrDefault(p => p.Id == productId);
 
             cart.RemoveItem(product, 1, product.ProductPrice);
 
