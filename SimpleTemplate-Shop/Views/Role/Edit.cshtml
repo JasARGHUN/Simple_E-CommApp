@@ -2,12 +2,13 @@
 @model ChangeRoleViewModel
 
 @{
-    ViewBag.Title = "Change access rights";
+    ViewBag.Title = "Изменить права доступа";
     Layout = "_AdminLayout";
 }
 
 <br />
-<p class="text-center mt-3" style="font-size:1.9em; text-decoration-line:underline;">Changing roles for a user 
+<p class="text-center mt-3" style="font-size:1.9em; text-decoration-line:underline;">
+    Смена ролей для пользователя
     <span class="badge badge-pill badge-light" style="font-size:1em;">
         @Model.UserEmail
     </span>
@@ -30,8 +31,8 @@
             <hr />
 
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-success" style="font-size:1.3em;">Save</button>
-                <a asp-controller="Role" asp-action="UserList" class="btn btn-primary" style="font-size:1.3em;">Back</a>
+                <button type="submit" class="btn btn-success" style="font-size:1.3em;">Изменить</button>
+                <a asp-controller="Role" asp-action="UserList" class="btn btn-primary" style="font-size:1.3em;">Отмена</a>
             </div>
 
         </form>

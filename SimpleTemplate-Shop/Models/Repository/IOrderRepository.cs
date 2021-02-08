@@ -7,5 +7,6 @@ namespace SimpleTemplate_Shop.Models.Repository
     {
         IQueryable<Order> Orders { get; }
         Task SaveOrder(Order order);
+        Task Delete(Order model);
     }
 }

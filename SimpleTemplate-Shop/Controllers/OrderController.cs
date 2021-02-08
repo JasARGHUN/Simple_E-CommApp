@@ -95,5 +95,13 @@ namespace SimpleTemplate_Shop.Controllers
             _cart.Clear();
             return View();
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var element = await _repository.Orders.FirstOrDefaultAsync(x => x.OrderID == id);
+            await  _repository.Delete(element);
+
+            return RedirectToAction("Index");
+        }
     }
 }

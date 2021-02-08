@@ -290,8 +290,8 @@ namespace SimpleTemplate_Shop.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalSum")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("TotalSum")
+                        .HasColumnType("int");
 
                     b.HasKey("CartLineID");
 
@@ -433,8 +433,8 @@ namespace SimpleTemplate_Shop.Migrations
                         .HasMaxLength(800)
                         .HasColumnType("nvarchar(800)");
 
-                    b.Property<decimal>("ProductPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("ProductPrice")
+                        .HasColumnType("int");
 
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("int");

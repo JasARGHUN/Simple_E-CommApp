@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "All Products";
+    ViewBag.Title = "Все объекты";
     Layout = "_AdminLayout";
 }
 
@@ -11,13 +11,13 @@
         <div class="row">
             <div class="col-6">
                 <h2>
-                    Products
+                    Объекты
                 </h2>
             </div>
             <div class="col-6 text-right">
                 <a asp-action="Upsert" class="btn btn-sm btn-outline-success">
                     <i class="fas fa-plus"></i>
-                    Add Product
+                    Добавить
                 </a>
             </div>
         </div>
@@ -26,19 +26,19 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>
-                            ProductID
+                            ID
                         </th>
                         <th>
-                            Name
+                            Название
                         </th>
                         <th>
-                            Manufacturer
+                            Производитель
                         </th>
                         <th>
-                            ProductPrice
+                            Цена
                         </th>
                         <th>
-                            Category
+                            Категория
                         </th>
                         <th></th>
                     </tr>
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <a asp-action="Index" class="btn btn-primary mt-1" style="font-size:1.7em;">Control Panel: Products</a>
+    <a asp-action="Index" class="btn btn-warning mt-1" style="font-size:1.7em;">Панель управления: Объекты</a>
 </div>
 
 @section Scripts{

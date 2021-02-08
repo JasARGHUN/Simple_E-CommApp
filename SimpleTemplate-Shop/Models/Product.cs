@@ -18,7 +18,7 @@ namespace SimpleTemplate_Shop.Models
         public string Category { get; set; }
 
         [Required(ErrorMessage = "Price field can't be empty...")]
-        public decimal ProductPrice { get; set; }
+        public int ProductPrice { get; set; }
 
         [Required(ErrorMessage = "Manufacturer field can't be empty...")]
         public string Manufacturer { get; set; }

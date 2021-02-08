@@ -63,6 +63,19 @@ namespace SimpleTemplate_Shop.Infrastructure
             _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(user, SD.Role_Employee).GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(preview, SD.Role_Preview).GetAwaiter().GetResult();
+
+            if (!_context.Infos.Any())
+            {
+                _context.Infos.Add(
+                    new Info
+                    {
+                        AppName = "Application Name",
+                        AppHomeImageText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        AppHomeImageTextFirst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        AppHomeImageTextSecond = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    });
+                _context.SaveChanges();
+            }
         }
     }
 }

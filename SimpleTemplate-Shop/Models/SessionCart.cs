@@ -21,13 +21,13 @@ namespace SimpleTemplate_Shop.Models
         [JsonIgnore]
         public ISession Session { get; set; }
 
-        public override void AddItem(Product product, int quantity, decimal sum)
+        public override void AddItem(Product product, int quantity, int sum)
         {
             base.AddItem(product, quantity, sum);
             Session.SetJson("Cart", this);
         }
 
-        public override void RemoveItem(Product product, int quantity, decimal sum)
+        public override void RemoveItem(Product product, int quantity, int sum)
         {
             base.RemoveItem(product, quantity, sum);
             Session.SetJson("Cart", this);

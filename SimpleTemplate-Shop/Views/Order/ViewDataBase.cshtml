@@ -1,7 +1,7 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<Order>
 
 @{
-    ViewBag.Title = "Data base: Orders";
+    ViewBag.Title = "База данных: Заказы";
     Layout = "_AdminLayout";
 }
 
@@ -11,13 +11,13 @@
 
     <br />
     <form method="get" class="form-inline mt-5">
-        <input name="filter" class="form-control" placeholder="Customer name..." value="@Model.RouteValue["Filter"]" />
+        <input name="filter" class="form-control" placeholder="Имя клиента..." value="@Model.RouteValue["Filter"]" />
         <button type="submit" class="btn btn-success ml-1">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            Search
+            <i class="fa fa-search" style="font-size:1.3em;"></i>
         </button>
         <a asp-action="ViewDataBase" asp-controller="Order" class="btn btn-warning ml-1">
-            Reset
+            <i class="fas fa-sync" style="font-size:1.3em;"></i>
         </a>
     </form>
 
@@ -25,7 +25,7 @@
 
     @if (Model.Count() > 0)
     {
-        <h3 class="ml-1">Sort by </h3>
+        <h3 class="ml-1">Сортировать по</h3>
         <button class="btn btn-outline-secondary m-1">@Html.SortableHeaderFor(model => model.OrderTime)</button>
         <button class="btn btn-outline-secondary m-1">@Html.SortableHeaderFor(model => model.OrderID)</button>
         <button class="btn btn-outline-secondary m-1">@Html.SortableHeaderFor(model => model.Name)</button>
@@ -37,32 +37,32 @@
                 <tr class="text-center bg-warning">
                     <th>
                         <h5 style="font-weight:bolder;">
-                            Order Time
+                            Время заказа
                         </h5>
                     </th>
                     <th>
                         <h5 style="font-weight:bolder;">
-                            Customer
+                            Клиент
                         </h5>
                     </th>
                     <th>
                         <h5 style="font-weight:bolder;">
-                            City:
+                            Город:
                         </h5>
                     </th>
                     <th>
                         <h5 style="font-weight:bolder;">
-                            ZIP:
+                            Почтовый индекс:
                         </h5>
                     </th>
                     <th>
                         <h5 style="font-weight:bolder;">
-                            Address:
+                            Адрес:
                         </h5>
                     </th>
                     <th>
                         <h5 style="font-weight:bolder;">
-                            Phone number:
+                            Номер телефона:
                         </h5>
                     </th>
                 </tr>
@@ -77,7 +77,7 @@
 
                     <tr class="text-center">
                         <td colspan="6" class="bg-light">
-                            <h3 style="font-weight: bolder; text-decoration-line:underline;">Identification number: @o.OrderID</h3>
+                            <h3 style="font-weight: bolder; text-decoration-line:underline;">ID заказа: @o.OrderID</h3>
                         </td>
                     </tr>
                     <tr class="text-center table-bordered border-danger">
@@ -90,17 +90,17 @@
                     </tr>
                     <tr class="text-center">
                         <td colspan="6">
-                            <h4 style="font-weight:bolder;">Purchase:</h4>
+                            <h4 style="font-weight:bolder;">Покупка:</h4>
                         </td>
                     </tr>
 
                     <tr class="table-bordered">
-                        <td><h5>Product name:</h5></td>
-                        <td><h5>Manufacturer:</h5></td>
-                        <td><h5>Product category:</h5></td>
-                        <td class="text-right"><h5>Count:</h5></td>
-                        <td class="text-right"><h5>Unit price:</h5></td>
-                        <td class="text-right"><h5>Total amount:</h5></td>
+                        <td><h5>Объект:</h5></td>
+                        <td><h5>Производитель:</h5></td>
+                        <td><h5>Категория:</h5></td>
+                        <td class="text-right"><h5>Количество:</h5></td>
+                        <td class="text-right"><h5>Цена за ед.:</h5></td>
+                        <td class="text-right"><h5>Итого:</h5></td>
                     </tr>
                     @foreach (CartLine i in o.Lines)
                     {
@@ -116,20 +116,20 @@
                     <tr>
                         <td colspan="6" class="bg-transparent">
                             <h4>
-                                Order status: @if (@o.Shipped == true)
+                                Статус: @if (@o.Shipped == true)
                                 {
                                     <span class="badge badge-success badge-pill" style="font-size:1em;">
-                                        Sent
+                                        Выполнено
                                     </span>
                                 }
                                 else
                                 {
                                     <span class="badge badge-danger badge-pill" style="font-size:1em;">
-                                        Not sent
+                                        В ожиданий
                                     </span>
                                 }
                             </h4>
-                            <h4>Total amount: @o.TotalAmount</h4>
+                            <h4>Итоговая сумма: @o.TotalAmount</h4>
                         </td>
                     </tr>
                 }
@@ -140,7 +140,7 @@
     else
     {
         <div class="text-center">
-            <h2 class="text-danger m-2">There is no data</h2>
+            <h2 class="text-danger m-2">Нет данных для просмотра</h2>
         </div>
     }
 
@@ -149,8 +149,8 @@
         <nav style="float:left" aria-label="Order Paging">
             <h5>@await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })</h5>
             <hr />
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-sm btn-primary text-right" style="font-size:1.5em;">
-                Back to control panel
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-sm btn-warning text-right" style="font-size:1.5em;">
+                Панель администратора
             </a>
             <hr />
         </nav>

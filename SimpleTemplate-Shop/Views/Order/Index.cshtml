@@ -1,7 +1,7 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<SimpleTemplate_Shop.Models.Order>
 
 @{
-    ViewBag.Title = "Orders";
+    ViewBag.Title = "Заказы";
     Layout = "_AdminLayout";
 }
 
@@ -16,13 +16,27 @@
         <table class="container table table-bordered table-striped mt-1 p-2">
             <thead>
                 <tr class="bg-warning">
-                    <th style="font-size: 1.2em;">Order ID</th>
-                    <th>Customer:</th>
-                    <th>ZIP:</th>
-                    <th>Address:</th>
-                    <th>Phone number:</th>
-                    <th>City</th>
-                    <th colspan="1">Details:</th>
+                    <th style="font-size: 1.2em;">
+                        ID заказа
+                    </th>
+                    <th>
+                        Клиент:
+                    </th>
+                    <th>
+                        Почтовый индекс:
+                    </th>
+                    <th>
+                        Адрес:
+                    </th>
+                    <th>
+                        Телефонный номер:
+                    </th>
+                    <th>
+                        Город:
+                    </th>
+                    <th colspan="1">
+                        Детали:
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -39,12 +53,24 @@
                         <td>@o.Line1</td>
                         <td><strong>@o.Phone</strong></td>
                         <td>@o.City</td>
-                        <th>Object:</th>
-                        <th>Category:</th>
-                        <th>Quantity:</th>
-                        <th>Price for 1 unit:</th>
-                        <th>Amount:</th>
-                        <th>Order time:</th>
+                        <th>
+                            Объект:
+                        </th>
+                        <th>
+                            Категория:
+                        </th>
+                        <th>
+                            Количество:
+                        </th>
+                        <th>
+                            Цена за 1 ед:
+                        </th>
+                        <th>
+                            Итого:
+                        </th>
+                        <th>
+                            Время заказа:
+                        </th>
                     </tr>
                     @foreach (CartLine line in o.Lines)
                     {
@@ -61,11 +87,17 @@
                     <tr>
                         <td colspan="12" class="bg-transparent">
                             <h5 style="font-size:1.5em; font-weight:bolder; text-decoration-line:underline;">
-                                Total amount: @o.TotalAmount
+                                Итоговая сумма: @o.TotalAmount
                             </h5>
+                            <form asp-action="Delete" method="post" style="float:right">
+                                <input type="hidden" name="id" value="@o.OrderID" />
+                                <button type="submit" class="btn btn-lg btn-danger">Отклонить</button>
+                                <hr />
+                                <br />
+                            </form>
                             <form asp-action="MarkShipped" method="post" style="float:right">
                                 <input type="hidden" name="orderId" value="@o.OrderID" />
-                                <button type="submit" class="btn btn-lg btn-danger">Execute</button>
+                                <button type="submit" class="btn btn-lg btn-success">Выполнить</button>
                                 <hr />
                                 <br />
                             </form>
@@ -74,21 +106,21 @@
                 }
             </tbody>
         </table>
-        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary" style="font-size:1.6em;">
-            Back to Control panel
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-warning" style="font-size:1.6em;">
+            Панель Администратора
         </a>
     }
     else
     {
         <div class="text-center">
             <h2 class="text-warning text-center m-2" style="font-size:2.5em;">
-                No orders to view
+                Нет заказов
             </h2>
         </div>
         <br />
         <div class="text-center m-2">
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-primary" style="font-size:1.8em;">
-                Back to control panel
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-warning" style="font-size:1.8em;">
+                Панель Администратора
             </a>
         </div>
     }

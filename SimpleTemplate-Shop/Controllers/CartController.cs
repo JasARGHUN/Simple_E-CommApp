@@ -28,7 +28,7 @@ namespace SimpleTemplate_Shop.Controllers
             });
         }
 
-        public async Task<RedirectToActionResult> AddToCart(int id, string returnUrl, decimal sum)
+        public async Task<RedirectToActionResult> AddToCart(int id, string returnUrl, int sum)
         {
             Product product = _repository.Product
                 .GetFirstOrDefault(p => p.Id == id);

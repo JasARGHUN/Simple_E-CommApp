@@ -21,22 +21,22 @@
 
                 <br />
                 <h3 class="text-center text-danger m-3" style="text-decoration-line:underline; font-weight:bolder;">
-                    Edit App name and logo
+                    Изменить название и логотип приложения
                 </h3>
                 <br />
 
                 <div class="form-group row m-1">
-                    <h5 style="font-weight:bolder;"><label>App name:</label></h5>
-                    <input asp-for="AppName" class="form-control" placeholder="Application name..." />
+                    <h5 style="font-weight:bolder;"><label>Название сайта:</label></h5>
+                    <input asp-for="AppName" class="form-control" placeholder="Название сайта..." />
                     <span asp-validation-for="AppName" class="text-danger"></span>
                 </div>
                 <hr />
 
                 <div class="form-group row m-1">
-                    <h5 style="font-weight:bolder;"><label>App Logo:</label></h5>
+                    <h5 style="font-weight:bolder;"><label>Логотип приложения:</label></h5>
                     <div class="custom-file">
                         <input multiple asp-for="AppImages" class="form-control custom-file-input" />
-                        <label class="custom-file-label">Click here to chage photo...</label>
+                        <label class="custom-file-label">Нажмите здесь, чтобы изменить логотип...</label>
                     </div>
                 </div>
                 <hr />
@@ -45,7 +45,7 @@
 
             <br />
             <h3 class="text-center text-danger m-3" style="text-decoration-line:underline; font-weight:bolder;">
-                Edit page /About Us
+                Редактировать страницу / О нас
             </h3>
             <br />
 
@@ -53,14 +53,14 @@
                 <div class="card m-2">
                     <div class="card-header">
                         <div class="mt-2 text-center" style="font-weight:bolder;">
-                            <h3><label>Home page image:</label></h3>
+                            <h3><label>Изображение главной страницы:</label></h3>
                         </div>
                         <div class="card m-4">
                             @await Component.InvokeAsync("AppHomeImage")
                         </div>
                         <div class="custom-file">
                             <input multiple asp-for="AppHomeImage" class="form-control custom-file-input" />
-                            <label class="custom-file-label">Click here to chage image...</label>
+                            <label class="custom-file-label">Нажмите здесь, чтобы выбрать логотип...</label>
                         </div>
                     </div>
                     <div class="card-body">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="mt-2">
                             <h5 style="font-weight:bolder;">
-                                <label>Main page text:</label>
+                                <label>Текст главной страницы:</label>
                             </h5>
                         </div>
                         <textarea asp-for="AppHomeImageText" class="form-control" rows="4" cols="100"></textarea>
@@ -80,7 +80,7 @@
                     <div class="card-header">
                         <div class="mt-2 text-center">
                             <h3 style="font-weight:bolder;">
-                                <label>First block picture:</label>
+                                <label>Изображение первого блока:</label>
                             </h3>
                         </div>
                         <div class="card m-4">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="custom-file">
                             <input multiple asp-for="AppHomeImageFirst" class="form-control custom-file-input" />
-                            <label class="custom-file-label">Click here to chage image...</label>
+                            <label class="custom-file-label">Нажмите здесь, чтобы изменить изображение...</label>
                         </div>
                     </div>
                     <div class="card-body">
@@ -97,7 +97,7 @@
                         </div>
                         <div class="mt-2">
                             <h5 style="font-weight:bolder;">
-                                <label>Firt block text:</label>
+                                <label>Текст первого блока:</label>
                             </h5>
                         </div>
                         <textarea asp-for="AppHomeImageTextFirst" class="form-control" rows="4" cols="100"></textarea>
@@ -108,7 +108,9 @@
                     <div class="card-header">
                         <div class="mt-2 text-center">
                             <h3 style="font-weight:bolder;">
-                                <label>Second block picture:</label>
+                                <label>
+                                    Изображение второго блока:
+                                </label>
                             </h3>
                         </div>
                         <div class="card m-4">
@@ -116,7 +118,7 @@
                         </div>
                         <div class="custom-file">
                             <input multiple asp-for="AppHomeImageSecond" class="form-control custom-file-input" />
-                            <label class="custom-file-label">Click here to chage image...</label>
+                            <label class="custom-file-label">Нажмите здесь, чтобы изменить изображение...</label>
                         </div>
                     </div>
                     <div class="card-body">
@@ -125,7 +127,7 @@
                         </div>
                         <div class="mt-2">
                             <h5 style="font-weight:bolder;">
-                                <label>Second block text:</label>
+                                <label>Текст второго блока:</label>
                             </h5>
                         </div>
                         <textarea asp-for="AppHomeImageTextSecond" class="form-control" rows="4" cols="100"></textarea>
@@ -134,9 +136,9 @@
             </div>
             <div class="form-group row m-1">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-success" style="font-size:1.5em;">Edit</button>
+                    <button type="submit" class="btn btn-success" style="font-size:1.5em;">Изменить</button>
                     
-                    <a asp-action="Index" class="btn btn-secondary" style="font-size:1.5em;">Back</a>
+                    <a asp-action="Index" class="btn btn-secondary" style="font-size:1.5em;">Отмена</a>
                 </div>
             </div>
             @section Scripts{

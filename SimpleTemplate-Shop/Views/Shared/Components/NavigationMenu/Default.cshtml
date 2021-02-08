@@ -4,7 +4,9 @@
     <a class="btn btn-block btn-secondary" style="font-size:1.3em;"
        asp-action="List"
        asp-controller="Product"
-       asp-route-category="">All Category</a>
+       asp-route-category="">
+        Все категорий
+    </a>
 
     <div>
         @foreach (string category in Model)
@@ -15,7 +17,9 @@
                    asp-controller="Product"
                    asp-route-category="@category"
                    asp-route-productPage="1"
-                   style="font-size:1.3em;">@category</a>
+                   style="font-size:1.3em;">
+                    @category
+                </a>
             </div>
         }
     </div>

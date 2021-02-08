@@ -7,7 +7,7 @@ namespace SimpleTemplate_Shop.Models
     {
         private List<CartLine> lineCollection = new List<CartLine>();
 
-        public virtual void AddItem(Product product, int quantity, decimal sum)
+        public virtual void AddItem(Product product, int quantity, int sum)
         {
             CartLine line = lineCollection
                 .Where(p => p.Product.Id == product.Id)
@@ -28,7 +28,7 @@ namespace SimpleTemplate_Shop.Models
             }
         }
 
-        public virtual void RemoveItem(Product product, int quantity, decimal sum)
+        public virtual void RemoveItem(Product product, int quantity, int sum)
         {
             CartLine line = lineCollection
                 .Where(p => p.Product.Id == product.Id)

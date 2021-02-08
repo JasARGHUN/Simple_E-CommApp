@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimpleTemplate_Shop.Migrations
 {
-    public partial class TestStart : Migration
+    public partial class AddModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,14 +11,14 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AppAddresses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    City = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(maxLength: 300, nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,10 +29,10 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AppSocialAddresses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UrlAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppSocialImg = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UrlAddress = table.Column<string>(nullable: false),
+                    AppSocialImg = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,10 +43,10 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,25 +57,25 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReturnUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    ReturnUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,16 +86,16 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "Infos",
                 columns: table => new
                 {
-                    InfoID = table.Column<int>(type: "int", nullable: false)
+                    InfoID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppHomeImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppHomeImageText = table.Column<string>(type: "nvarchar(1200)", maxLength: 1200, nullable: false),
-                    AppHomeImageFirst = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppHomeImageTextFirst = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: false),
-                    AppHomeImageSecond = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppHomeImageTextSecond = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: false)
+                    AppName = table.Column<string>(nullable: false),
+                    AppImage = table.Column<string>(nullable: true),
+                    AppHomeImage = table.Column<string>(nullable: true),
+                    AppHomeImageText = table.Column<string>(maxLength: 1200, nullable: false),
+                    AppHomeImageFirst = table.Column<string>(nullable: true),
+                    AppHomeImageTextFirst = table.Column<string>(maxLength: 800, nullable: false),
+                    AppHomeImageSecond = table.Column<string>(nullable: true),
+                    AppHomeImageTextSecond = table.Column<string>(maxLength: 800, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,17 +106,17 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderID = table.Column<int>(type: "int", nullable: false)
+                    OrderID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Shipped = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Line1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Shipped = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Line1 = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    City = table.Column<string>(nullable: false),
+                    Phone = table.Column<string>(maxLength: 25, nullable: false),
+                    Zip = table.Column<string>(nullable: false),
+                    OrderTime = table.Column<DateTime>(nullable: false),
+                    TotalAmount = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,33 +127,38 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfManufacture = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuantityInStock = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image3 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    ProductDescription = table.Column<string>(maxLength: 800, nullable: false),
+                    Category = table.Column<string>(nullable: true),
+                    ProductPrice = table.Column<decimal>(nullable: false),
+                    Manufacturer = table.Column<string>(nullable: false),
+                    DateOfManufacture = table.Column<string>(nullable: false),
+                    QuantityInStock = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: false),
+                    Processor = table.Column<string>(nullable: false),
+                    RAM = table.Column<string>(nullable: false),
+                    PowerSupply = table.Column<string>(nullable: false),
+                    StorageDevice = table.Column<string>(nullable: false),
+                    VideoCard = table.Column<string>(nullable: false),
+                    OperatingSystem = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductID);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,11 +175,11 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -191,10 +196,10 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -211,8 +216,8 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,10 +240,10 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -255,13 +260,13 @@ namespace SimpleTemplate_Shop.Migrations
                 name: "CartLine",
                 columns: table => new
                 {
-                    CartLineID = table.Column<int>(type: "int", nullable: false)
+                    CartLineID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    TotalSum = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OrderTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    TotalSum = table.Column<decimal>(nullable: false),
+                    OrderTime = table.Column<DateTime>(nullable: false),
+                    OrderID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -276,7 +281,7 @@ namespace SimpleTemplate_Shop.Migrations
                         name: "FK_CartLine_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

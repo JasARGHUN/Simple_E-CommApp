@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AppAddress>
 
 @{
-    ViewBag.Title = "Control panel: Our contacts";
+    ViewBag.Title = "Панель управления: Контакты";
     Layout = "_AdminLayout";
 }
 
@@ -10,12 +10,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Image</th>
-                <th scope="col">City</th>
-                <th scope="col">Addresses</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
-                <th class="text-center">Action</th>
+                <th>Изображение</th>
+                <th scope="col">Город</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Эл. адрес</th>
+                <th class="text-center"></th>
             </tr>
         </thead>
         @foreach (var item in Model)
@@ -33,9 +33,11 @@
 
                     <th class="text-right">
                         <form asp-action="DeleteAddress" asp-route-id="@item.Id" method="post">
-                            <a class="btn btn-outline-warning" asp-action="EditAppAddressData" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-outline-warning" asp-action="EditAppAddressData" asp-route-id="@item.Id">
+                                Редактировать
+                            </a>
                             <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Delete: @item.Address?')">
-                                Delete
+                                Удалить
                             </button>
                         </form>
                     </th>
@@ -43,6 +45,6 @@
             </tbody>
         }
     </table>
-    <a asp-action="CreateAppAddressData" class="btn btn-outline-success" style="font-size:1.5em;">Add</a>
-    <a asp-action="Index" class="btn btn-outline-primary" style="font-size:1.5em;">Back</a>
+    <a asp-action="CreateAppAddressData" class="btn btn-outline-success" style="font-size:1.5em;">Добавить</a>
+    <a asp-action="Index" class="btn btn-outline-primary" style="font-size:1.5em;">Назад</a>
 </div>

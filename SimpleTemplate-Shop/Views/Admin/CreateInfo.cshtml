@@ -1,7 +1,7 @@
 ﻿@model InfoCreateViewModel
 
 @{
-    ViewBag.Title = "Create Application Datas";
+    ViewBag.Title = "Создать данные приложения";
     Layout = "_AdminLayout";
 }
 
@@ -12,22 +12,22 @@
         <div class="card m-2">
 
             <div class="form-group row m-1">
-                <input asp-for="AppName" class="form-control" placeholder="Application name..." />
+                <input asp-for="AppName" class="form-control" placeholder="Название сайта..." />
                 <span asp-validation-for="AppName" class="text-danger"></span>
             </div>
 
             <div class="form-group row m-1">
-                <label asp-for="AppImages" class="col-sm-2 col-form-label"></label>
+                <label asp-for="AppImages" class="col-sm-2 col-form-label">Логотип сайта</label>
                 <div class="custom-file">
                     <input multiple asp-for="AppImages" class="form-control custom-file-input" />
-                    <label class="custom-file-label">Click here to chage add logo...</label>
+                    <label class="custom-file-label">Нажмите здесь, чтобы изменить логотип...</label>
                 </div>
             </div>
 
         </div>
         <div class="form-group row m-1">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-success" style="font-size:1.5em;">Create</button>
+                <button type="submit" class="btn btn-success" style="font-size:1.5em;">Добавить</button>
             </div>
         </div>
 

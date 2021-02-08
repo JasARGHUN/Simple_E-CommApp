@@ -1,7 +1,7 @@
 ﻿@model AppAddressCreateViewModel
 
 @{
-    ViewBag.Title = "Add address";
+    ViewBag.Title = "Добавить адрес";
     Layout = "_AdminLayout";
 }
 
@@ -11,7 +11,9 @@
         <form asp-action="CreateAppAddressData" asp-controller="Admin" enctype="multipart/form-data" method="post">
 
             <div class="form-group">
-                <label asp-for="City" style="font-size:1.5em;" class="float-left"></label>
+                <label style="font-size:1.5em;" class="float-left">
+                    Город
+                </label>
                 <input asp-for="City" class="form-control" />
                 <div>
                     <span asp-validation-for="City" class="text-danger"></span>
@@ -19,7 +21,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Address" style="font-size:1.5em;" class="float-left"></label>
+                <label style="font-size:1.5em;" class="float-left">
+                    Адрес
+                </label>
                 <input asp-for="Address" class="form-control" />
                 <div>
                     <span asp-validation-for="Address" class="text-danger"></span>
@@ -27,7 +31,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Phone" style="font-size:1.5em;" class="float-left"></label>
+                <label style="font-size:1.5em;" class="float-left">
+                    Телефонный номер
+                </label>
                 <input asp-for="Phone" class="form-control" />
                 <div>
                     <span asp-validation-for="Phone" class="text-danger"></span>
@@ -35,7 +41,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Email" style="font-size:1.5em;" class="float-left"></label>
+                <label style="font-size:1.5em;" class="float-left">
+                    Эл. адрес
+                </label>
                 <input asp-for="Email" class="form-control" />
                 <div>
                     <span asp-validation-for="Email" class="text-danger"></span>
@@ -44,7 +52,7 @@
 
             <div class="form-group">
                 <div>
-                    <label asp-for="Description" style="font-size:1.5em;" class="float-left">Description (Only 200 characters)</label>
+                    <label style="font-size:1.5em;" class="float-left">Описание (только 200 символов)</label>
                 </div>
                 <div>
                     <textarea asp-for="Description" class="form-control" rows="8"></textarea>
@@ -55,17 +63,19 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="AppPicture" style="font-size:1.5em;" class="float-left">Image</label>
+                <label asp-for="AppPicture" style="font-size:1.5em;" class="float-left">
+                    Изображение
+                </label>
                 <div class="custom-file">
                     <input asp-for="AppPicture" class="form-control custom-file-input" />
-                    <label class="custom-file-label">Click here to change image...</label>
+                    <label class="custom-file-label">Добавить изображение...</label>
                 </div>
             </div>
             <hr />
 
             <div class="text-center">
-                <button type="submit" class="btn btn-outline-primary" style="font-size:1.5em;">Add</button>
-                <a asp-action="AddressList" asp-controller="Admin" class="btn btn-outline-warning" style="font-size:1.5em;">Cancel</a>
+                <button type="submit" class="btn btn-outline-primary" style="font-size:1.5em;">Добавить</button>
+                <a asp-action="AddressList" asp-controller="Admin" class="btn btn-outline-warning" style="font-size:1.5em;">Отмена</a>
             </div>
 
             @section Scripts{

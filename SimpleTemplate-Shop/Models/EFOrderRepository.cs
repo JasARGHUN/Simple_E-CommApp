@@ -26,5 +26,12 @@ namespace SimpleTemplate_Shop.Models
             }
             await _context.SaveChangesAsync();
         }
+
+        public async Task Delete(Order model)
+        {
+            var element = await _context.Orders.FirstOrDefaultAsync(x => x.OrderID == model.OrderID);
+            _context.Orders.Remove(element);
+            await _context.SaveChangesAsync();
+        }
     }
 }

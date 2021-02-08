@@ -9,39 +9,39 @@
         <form asp-action="Checkout" method="post" class="p-3"
               style="box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.50); font-size:2em;">
             <div class="form-group">
-                <label>Name:</label>
+                <label>ФИО:</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Address:</label>
+                <label>Адрес доставки:</label>
                 <input asp-for="Line1" class="form-control" />
                 <span asp-validation-for="Line1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Email:</label>
+                <label>Эл. адрес:</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>City:</label>
+                <label>Город:</label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Phone number:</label>
+                <label>Телефонный номер:</label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>ZIP:</label>
+                <label>Почтовый индекс:</label>
                 <input asp-for="Zip" class="form-control" />
                 <span asp-validation-for="Zip" class="text-danger"></span>
             </div>
             <br />
             <div class="text-center">
-                <a class="btn btn-primary m-1 float-left" asp-action="Index" asp-controller="Cart" style="font-size:0.8em;">Back to basket</a>
-                <input class="btn btn-success m-1 float-right" style="font-size:0.8em;" type="submit" value="To order" />
+                <a class="btn btn-primary m-1 float-left" asp-action="Index" asp-controller="Cart" style="font-size:0.8em;">Назад</a>
+                <input class="btn btn-success m-1 float-right" style="font-size:0.8em;" type="submit" value="Отправить заявку" />
             </div>
         </form>
     </div>

@@ -16,10 +16,13 @@ namespace SimpleTemplate_Shop.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
-            return View(_repository.Product.GetAll()
+
+            var item = _repository.Product.GetAll()
                 .Select(x => x.Category)
                 .Distinct()
-                .OrderBy(x => x));
+                .OrderBy(x => x);
+
+            return View(item);
         }
     }
 }

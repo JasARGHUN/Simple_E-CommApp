@@ -1,7 +1,7 @@
 ﻿@model ProductViewModel
 
 @{
-    var title = "Control panel: Add product";
+    var title = "Панель управления: Добавить объект";
     Layout = "_AdminLayout";
 }
 
@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Product Name
+                            Название
                         </label>
                     </div>
                     <div class="col-8">
@@ -45,7 +45,7 @@
 
                 <div class="form-group row">
                     <div class="col-4">
-                        Image
+                        Изображение
                     </div>
                     <div class="col-8">
                         <input type="file" name="files" id="uploadBox" multiple class="form-control" />
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Description
+                            Описание
                         </label>
                     </div>
                     <div class="col-8">
@@ -66,7 +66,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Product Manufacturer
+                            Производитель
                         </label>
                     </div>
                     <div class="col-8">
@@ -78,7 +78,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Date Of Manufacture
+                            Дата производства
                         </label>
                     </div>
                     <div class="col-8">
@@ -89,7 +89,7 @@
 
                 <div class="form-group row">
                     <div class="col-4">
-                        Category
+                        Категория
                     </div>
                     <div class="col-8">
                         <input asp-for="Product.Category" class="form-control" />
@@ -100,7 +100,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Price
+                            Цена
                         </label>
                     </div>
                     <div class="col-8">
@@ -112,7 +112,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Product QuantityInStock
+                            Количество в наличии
                         </label>
                     </div>
                     <div class="col-8">
@@ -123,13 +123,13 @@
 
                 <hr />
                 <h5 class="text-center">
-                    Detailed Description
+                    Подробное описание
                 </h5>
 
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Type
+                            Модель
                         </label>
                     </div>
                     <div class="col-8">
@@ -141,7 +141,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Processor
+                            Процессор
                         </label>
                     </div>
                     <div class="col-8">
@@ -153,7 +153,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            RAM
+                            ОЗУ
                         </label>
                     </div>
                     <div class="col-8">
@@ -165,7 +165,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Power Supply
+                            Блок питания
                         </label>
                     </div>
                     <div class="col-8">
@@ -177,7 +177,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Storage Device
+                            Устройство хранения
                         </label>
                     </div>
                     <div class="col-8">
@@ -189,7 +189,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Video Card
+                            Видеокарта
                         </label>
                     </div>
                     <div class="col-8">
@@ -201,7 +201,7 @@
                 <div class="form-group row">
                     <div class="col-4">
                         <label>
-                            Operating System
+                            Операционная система
                         </label>
                     </div>
                     <div class="col-8">
@@ -220,12 +220,12 @@
                             <div class="row">
                                 <div class="col">
                                     <button type="submit" onclick="return validateInput()" class="btn btn-sm btn-outline-success form-control">
-                                        Add
+                                        Добавить
                                     </button>
                                 </div>
                                 <div class="col">
                                     <a asp-action="AllProducts" class="btn btn-sm btn-outline-primary form-control text-center">
-                                        Back
+                                        Отмена
                                     </a>
                                 </div>
                             </div>
@@ -241,6 +241,7 @@
     <partial name="_ValidationScriptsPartial" />
     <script src="https://cdn.tiny.cloud/1/3qaegff8mo61lk0xki6vwf4leavdmaljpx30jpu9b3zxzh0o/tinymce/5/tinymce.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
 
         tinymce.init({

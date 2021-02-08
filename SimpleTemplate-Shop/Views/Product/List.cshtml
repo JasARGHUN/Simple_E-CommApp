@@ -30,21 +30,21 @@
            asp-route-name="@(Model.FilterViewModel.SelectedName)"
            asp-route-company="@(Model.FilterViewModel.SelectedCategory)"
            class="btn btn-light border" style="font-size:1.3em;">
-            Name <i class="fas fa-sort"></i>
+            Название <i class="fas fa-sort"></i>
         </a>
 
         <a asp-action="List" asp-route-sortOrder="@(Model.SortViewModel.PriceSort)"
            asp-route-name="@(Model.FilterViewModel.SelectedName)"
            asp-route-company="@(Model.FilterViewModel.SelectedCategory)"
            class="btn btn-light border" style="font-size:1.3em;">
-            Price <i class="fas fa-sort"></i>
+            Цена <i class="fas fa-sort"></i>
         </a>
 
         <a asp-action="List" asp-route-sortOrder="@(Model.SortViewModel.CategorySort)"
            asp-route-name="@(Model.FilterViewModel.SelectedName)"
            asp-route-company="@(Model.FilterViewModel.SelectedCategory)"
            class="btn btn-light border" style="font-size:1.3em;">
-            Category <i class="fas fa-sort"></i>
+            Категорий <i class="fas fa-sort"></i>
         </a>
     </div>
 </div>
@@ -52,7 +52,7 @@
 <div class="container">
     <span class="badge badge-warning badge-pill mt-2 mr-3" 
           style="font-size:1.6em; float:right; margin-bottom:-15px; border-radius:25px; cursor:pointer;">
-        Selected: @Model.Products.Count()
+        Выбрано: @Model.Products.Count()
     </span>
 </div>
 
