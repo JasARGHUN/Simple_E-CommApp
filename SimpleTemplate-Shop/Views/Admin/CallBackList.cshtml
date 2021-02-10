@@ -1,0 +1,68 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<CallBack>
+
+@{
+    ViewBag.Title = "Панель управления: Обратная связь";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Клиент</th>
+                <th scope="col">Контактные данные для связи</th>
+                <th scope="col">Дата сообщения</th>
+                <th>Статус</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.OrderByDescending(x => x.Id))
+        {
+
+            <tbody>
+                <tr>
+                    <th>@item.Id</th>
+                    <th>@item.ClientName</th>
+                    <th>@item.ContactForm</th>
+                    <th>@item.CallTime</th>
+                    <th>
+                        <h5>
+                            @if (item.Marked == true)
+                            {
+                                <span class="badge badge-success badge-pill" style="font-size:1em;">
+                                    Прочитано
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger badge-pill" style="font-size:1em;">
+                                    В ожиданий
+                                </span>
+                            }
+                        </h5>
+                    </th>
+                    <th class="text-right">
+                        <form asp-action="DeleteCallBack" asp-route-id="@item.Id" method="post">
+                            <a class="btn btn-outline-warning form-group" asp-action="CallBackDetails" asp-route-id="@item.Id">
+                                Детали сообщения
+                            </a>
+                            <button type="submit" class="btn btn-outline-danger form-group" onclick="return confirm('Удалить: @item.Id?')">
+                                Удалить
+                            </button>
+                        </form>
+                    </th>
+                </tr>
+            </tbody>
+        }
+    </table>
+    <a asp-action="Index" class="btn btn-outline-primary" style="font-size:1.5em;">Назад</a>
+</div>
+<div class="m-2">
+    @*Pagination*@
+    <nav style="float:left" aria-label="CallBack Paging">
+        <h5>@await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })</h5>
+        <hr />
+    </nav>
+</div>

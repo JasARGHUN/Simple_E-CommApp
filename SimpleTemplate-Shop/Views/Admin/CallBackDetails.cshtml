@@ -1,0 +1,91 @@
+﻿@model CallBack
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row p-2 border" style="margin-top:15%;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.Id" />
+
+            <div class="col-12 border-bottom">
+                <h3>
+                    Детали сообщения
+                </h3>
+                <h5>
+                    Идентификатор клиента: @Model.Id
+                </h5>
+            </div>
+
+            <div class="col-12 pt-4">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CallTime">Время отправки сообщения</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CallTime" class="form-control" disabled />
+                        <span asp-validation-for="CallTime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ClientName">Имя клиент</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ClientName" class="form-control" disabled />
+                        <span asp-validation-for="ClientName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Message">Сообщение</label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Message" class="form-control" rows="5" disabled></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ContactForm">Желаемы вид связи</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ContactForm" class="form-control" placeholder="your email or phone number" disabled />
+                        <span asp-validation-for="ContactForm" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        <div class="row">
+                            <div class="col">
+                                <a asp-action="CallBackList" class="btn btn-sm btn-outline-primary form-control text-center">
+                                    Назад
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @if (Model.Marked != true)
+    {
+        <form asp-action="Marked" method="post" style="float:right">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-lg btn-success">Отметить как Прочитано</button>
+            <hr />
+            <br />
+        </form>
+    }
+    else
+    {
+        <div class="mt-3" style="float:right">
+            <span class="badge badge-success" style="font-size:2.5em;">
+                Прочитано
+            </span>
+        </div>
+    }
+</div>

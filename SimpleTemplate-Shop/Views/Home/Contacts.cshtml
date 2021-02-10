@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CallBackViewModel
+
+@{
     ViewData["Title"] = "Contacts";
 }
 
@@ -15,6 +17,149 @@
     </div>
 </div>
 
-<div class="container">
+<!-- Button trigger modal -->
+<div class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Оставить заявку
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Обратная связь</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row p-2">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-12 pt-4">
+
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <label asp-for="CallBack.ClientName">
+                                        Имя
+                                    </label>
+                                </div>
+                                <div class="col-8">
+                                    <input asp-for="CallBack.ClientName" class="form-control" />
+                                    <span asp-validation-for="CallBack.ClientName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <label asp-for="CallBack.Message">
+                                        Сообщение
+                                    </label>
+                                </div>
+                                <div class="col-8">
+                                    <textarea asp-for="CallBack.Message" class="form-control" rows="5"></textarea>
+                                    <span asp-validation-for="CallBack.Message" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <label asp-for="CallBack.ContactForm">
+                                        Желаемая форма связи
+                                    </label>
+                                </div>
+                                <div class="col-8">
+                                    <input asp-for="CallBack.ContactForm" class="form-control" placeholder="номер телефона или эл. адрес" />
+                                    <span asp-validation-for="CallBack.ContactForm" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-outline-success form-control">
+                            Отправить
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+}
+
+@*<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row p-2 border" style="margin-top:10%;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-12 border-bottom">
+                <h3>Call back form</h3>
+            </div>
+
+            <div class="col-12 pt-4">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CallBack.ClientName">
+                            Имя
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CallBack.ClientName" class="form-control" />
+                        <span asp-validation-for="CallBack.ClientName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CallBack.Message">
+                            Сообщение
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="CallBack.Message" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="CallBack.Message" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CallBack.ContactForm">
+                            Желаемая форма связи
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CallBack.ContactForm" class="form-control" placeholder="your email or phone number" />
+                        <span asp-validation-for="CallBack.ContactForm" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-sm btn-outline-success form-control">
+                                    Отправить
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>*@
+
+<div class="container mt-5">
     <div class="text-center">@await Component.InvokeAsync("SocialAddress")</div>
 </div>

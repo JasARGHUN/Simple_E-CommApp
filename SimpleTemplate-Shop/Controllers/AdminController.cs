@@ -26,6 +26,7 @@ namespace SimpleTemplate_Shop.Controllers
         private readonly IAppDataRepository _appRepository;
 
         public int productInPage = 12; // Products/Objects count in AllProducts page
+        public int viewCallBackItemsInPages = 20; // Callback items count in CallBackList page
 
         public AdminController(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnvironment, IInfoRepository infoRepository,
             IAppAddressRepository addressRepository, IAppDataRepository appRepository)
@@ -680,6 +681,64 @@ namespace SimpleTemplate_Shop.Controllers
             }
 
             return uniqueFileName;
+        }
+        #endregion
+
+        #region CallBack
+
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public IActionResult CallBackList(string filter, int page = 1, string sortExpression = "CallTime")
+        {
+            var qry = _unitOfWork.CallBack.GetAll().AsQueryable(); //_repository.Orders.AsNoTracking().Where(o => !o.Shipped);
+            var model = PagingList.Create(qry, viewCallBackItemsInPages, page, sortExpression, "CallTime");
+
+            return View(model);
+        }
+
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public async Task<ViewResult> CallBackDetails(int? id)
+        {
+            var product = await _unitOfWork.CallBack.Get(id.Value);
+
+            if (product == null)
+            {
+                Response.StatusCode = 404;
+                return View("ProductNotFound", id.Value);
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCallBack(int id)
+        {
+            var model = await _unitOfWork.CallBack.Get(id);
+
+            if (model != null)
+            {
+                TempData["message"] = $"{model.Id} was deleted";
+            }
+
+            await _unitOfWork.CallBack.Remove(model);
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(CallBackList));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public IActionResult Marked(int id)
+        {
+            var model = _unitOfWork.CallBack
+                .GetFirstOrDefault(x => x.Id == id);
+
+            if (model != null)
+            {
+                model.Marked = true;
+                _unitOfWork.Save();
+            }
+
+            return RedirectToAction(nameof(CallBackList));
         }
         #endregion
     }

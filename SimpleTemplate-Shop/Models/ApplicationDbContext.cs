@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SimpleTemplate_Shop.Models.ViewModels;
-using System.Collections.Generic;
 
 namespace SimpleTemplate_Shop.Models
 {
@@ -24,5 +22,6 @@ namespace SimpleTemplate_Shop.Models
         public DbSet<AppAddress> AppAddresses { get; set; }
         public DbSet<AppSocialAddress> AppSocialAddresses { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
+        public DbSet<CallBack> CallBacks { get; set; }
     }
 }
