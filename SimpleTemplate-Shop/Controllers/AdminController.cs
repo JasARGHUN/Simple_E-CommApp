@@ -172,6 +172,33 @@ namespace SimpleTemplate_Shop.Controllers
             return View(item);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(int productId)
+        {
+            var model = await _unitOfWork.Product.Get(productId);
+            if (model != null)
+            {
+                TempData["message"] = $"{model.Name} was deleted";
+            }
+
+            string webRootPath = _hostingEnvironment.WebRootPath;
+
+            if (model.Image != null)
+            {
+                var imagePath = Path.Combine(webRootPath, model.Image.TrimStart('\\'));
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            await _unitOfWork.Product.Remove(model);
+            _unitOfWork.Save();
+
+            return RedirectToAction("AllProducts");
+        }
+
         #region API CALLS
 
         [HttpGet]
@@ -181,7 +208,8 @@ namespace SimpleTemplate_Shop.Controllers
             return Json(new { data = allObj });
         }
 
-        [HttpDelete]
+        /*
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await _unitOfWork.Product.Get(id);
@@ -205,7 +233,7 @@ namespace SimpleTemplate_Shop.Controllers
 
             return Json(new { success = true, message = $"The object {model.Name} has been deleted" });
         }
-
+        */
         #endregion
 
         #region App Info
