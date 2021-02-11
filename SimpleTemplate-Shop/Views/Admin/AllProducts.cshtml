@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <div class="text-right m-1 ">
-        <a asp-action="Upsert" class="btn btn-success mt-1" style="font-size:1.7em;">Добавить услугу/продукт</a>
+        <a asp-action="Create" class="btn btn-success mt-1" style="font-size:1.7em;">Добавить услугу/продукт</a>
     </div>
     <br />
 
@@ -88,7 +88,7 @@
                     <td class="text-left">@i.QuantityInStock</td>
                     <td class="text-right">
                         <form asp-action="Delete" method="post">
-                            <a asp-action="Upsert" asp-route-id="@i.Id" class="btn btn-sm btn-warning">Изменить</a>
+                            <a asp-action="Edit" asp-route-id="@i.Id" class="btn btn-sm btn-warning">Изменить</a>
                             <input type="hidden" name="ProductID" value="@i.Id" />
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete: @i.Name?')">
                                 Удалить

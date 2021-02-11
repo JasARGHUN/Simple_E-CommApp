@@ -173,6 +173,139 @@ namespace SimpleTemplate_Shop.Controllers
             return View(item);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ProductViewModel item = new ProductViewModel()
+            {
+                Product = new Product()
+            };
+
+            return View(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\products");
+                    var extenstion = Path.GetExtension(files[0].FileName);
+
+                    if (model.Product.Image != null)
+                    {
+                        // Update data with image
+                        var imagePath = Path.Combine(webRootPath, model.Product.Image.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    {
+                        await files[0].CopyToAsync(fileStreams);
+                    }
+
+                    model.Product.Image = @"\images\products\" + fileName + extenstion;
+                }
+
+                if (model.Product.Id == 0)
+                {
+                    await _unitOfWork.Product.Add(model.Product);
+                }
+
+                _unitOfWork.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ProductViewModel item = new ProductViewModel()
+            {
+                Product = new Product()
+            };
+
+            item.Product = await _unitOfWork.Product.Get(id);
+
+            if (item.Product == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductViewModel item)
+        {
+            if (ModelState.IsValid)
+            {
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\products");
+                    var extenstion = Path.GetExtension(files[0].FileName);
+
+                    if (item.Product.Image != null)
+                    {
+                        // Update data with image
+                        var imagePath = Path.Combine(webRootPath, item.Product.Image.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    {
+                        await files[0].CopyToAsync(fileStreams);
+                    }
+
+                    item.Product.Image = @"\images\products\" + fileName + extenstion;
+                }
+                else
+                {
+                    // Update data without update image
+                    if (item.Product.Id != 0)
+                    {
+                        var model = await _unitOfWork.Product.Get(item.Product.Id);
+                        item.Product.Image = model.Image;
+                    }
+                }
+
+                await _unitOfWork.Product.UpdateAsync(item.Product);
+
+                _unitOfWork.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                if (item.Product.Id != 0)
+                {
+                    item.Product = await _unitOfWork.Product.Get(item.Product.Id);
+                }
+            }
+
+            return View(item);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(int productId)
         {

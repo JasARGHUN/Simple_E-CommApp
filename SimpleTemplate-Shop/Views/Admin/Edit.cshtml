@@ -1,0 +1,232 @@
+﻿@model ProductViewModel
+
+@{
+    ViewBag.Title = "Панель управления: Редактировать объект";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row p-2 border" style="margin-top:10%;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Product.Id" />
+
+            <div class="col-12 border-bottom">
+                <h3>Редактировать объект</h3>
+            </div>
+
+            <div class="col-12 pt-4">
+
+                @if (Model.Product.Id != 0)
+                {
+                    <div class="form-group row p-2">
+                        <img src="@Model.Product.Image" />
+                    </div>
+                }
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Название
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.Name" class="form-control" />
+                        <span asp-validation-for="Product.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        Изображение
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label style="font-size:1.5em;" class="float-left">Описание</label>
+                    </div>
+                    <div>
+                        <textarea asp-for="Product.ProductDescription" class="form-control" rows="15"></textarea>
+                    </div>
+                    <div>
+                        <span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Производитель
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.Manufacturer" class="form-control" />
+                        <span asp-validation-for="Product.Manufacturer" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Дата производства
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.DateOfManufacture" class="form-control" />
+                        <span asp-validation-for="Product.DateOfManufacture" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        Категория
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.Category" class="form-control" />
+                        <span asp-validation-for="Product.Category" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Цена
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.ProductPrice" class="form-control" />
+                        <span asp-validation-for="Product.ProductPrice" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Количество в наличии
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.QuantityInStock" class="form-control" />
+                        <span asp-validation-for="Product.QuantityInStock" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+                <h5 class="text-center">
+                    Подробное описание
+                </h5>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Модель
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.Type" class="form-control" />
+                        <span asp-validation-for="Product.Type" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Процессор
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.Processor" class="form-control" />
+                        <span asp-validation-for="Product.Processor" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            ОЗУ
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.RAM" class="form-control" />
+                        <span asp-validation-for="Product.RAM" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Блок питания
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.PowerSupply" class="form-control" />
+                        <span asp-validation-for="Product.PowerSupply" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Устройство хранения
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.StorageDevice" class="form-control" />
+                        <span asp-validation-for="Product.StorageDevice" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Видеокарта
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.VideoCard" class="form-control" />
+                        <span asp-validation-for="Product.VideoCard" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label>
+                            Операционная система
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Product.OperatingSystem" class="form-control" />
+                        <span asp-validation-for="Product.OperatingSystem" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        <partial name="_EditAndBackToListButton" model="Model.Product.Id" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Please select an image", "error");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+}

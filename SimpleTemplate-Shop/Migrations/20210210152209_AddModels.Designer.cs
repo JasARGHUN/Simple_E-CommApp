@@ -10,8 +10,8 @@ using SimpleTemplate_Shop.Models;
 namespace SimpleTemplate_Shop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210210044551_AddCallBackForm")]
-    partial class AddCallBackForm
+    [Migration("20210210152209_AddModels")]
+    partial class AddModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -288,6 +288,9 @@ namespace SimpleTemplate_Shop.Migrations
 
                     b.Property<string>("ContactForm")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Marked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
