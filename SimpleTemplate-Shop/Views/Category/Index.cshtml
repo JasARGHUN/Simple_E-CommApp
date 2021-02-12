@@ -1,0 +1,52 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<SimpleTemplate_Shop.Models.Category>
+
+@{
+    ViewBag.Title = "Control Panel: Категорий";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<div class="container">
+    <h3 class="ml-1">Sort by </h3>
+    <button class="btn btn-outline-secondary m-1">@Html.SortableHeaderFor(model => model.Id)</button>
+    <button class="btn btn-outline-secondary m-1">@Html.SortableHeaderFor(model => model.Name)</button>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th scope="col">Категория</th>
+                <th class="text-right"></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+
+            <tbody>
+                <tr>
+                    <th>
+                        @item.Id
+                    </th>
+                    <th>@item.Name</th>
+                    <th class="text-right">
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                            <a class="btn btn-outline-warning" asp-action="Upsert" asp-route-id="@item.Id">Изменить</a>
+                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Delete: @item.Name ?')">
+                                Удалить
+                            </button>
+                        </form>
+                    </th>
+                </tr>
+            </tbody>
+        }
+    </table>
+    <div class="m-2">
+        @*Pagination*@
+        <nav style="float:left" aria-label="Products Paging">
+            <h5>@await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })</h5>
+            <hr />
+        </nav>
+    </div>
+    <a asp-action="Upsert" class="btn btn-outline-success" style="font-size:1.5em;">Добавить</a>
+    <a asp-controller="Admin" asp-action="Index" class="btn btn-outline-primary" style="font-size:1.5em;">Назад</a>
+</div>

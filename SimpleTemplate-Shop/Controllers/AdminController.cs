@@ -13,6 +13,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using SimpleTemplate_Shop.Infrastructure;
 using SimpleTemplate_Shop.Models.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SimpleTemplate_Shop.Controllers
 {
@@ -54,7 +55,7 @@ namespace SimpleTemplate_Shop.Controllers
 
         public ViewResult AllProducts(string filter, int page = 1, string sortExpression = "Name")
         {
-            var qry = _unitOfWork.Product.GetAll();
+            var qry = _unitOfWork.Product.GetAll(includeProperties: "Category");
 
             if (!string.IsNullOrWhiteSpace(filter))
             {
@@ -74,11 +75,11 @@ namespace SimpleTemplate_Shop.Controllers
             ProductViewModel item = new ProductViewModel()
             {
                 Product = new Product(),
-                //CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
-                //{
-                //    Text = i.Name,
-                //    Value = i.Id.ToString()
-                //})
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
             };
 
             if (id == null)
@@ -158,11 +159,11 @@ namespace SimpleTemplate_Shop.Controllers
             }
             else
             {
-                //item.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
-                //{
-                //    Text = i.Name,
-                //    Value = i.Id.ToString()
-                //});
+                item.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
 
                 if (item.Product.Id != 0)
                 {
@@ -178,14 +179,19 @@ namespace SimpleTemplate_Shop.Controllers
         {
             ProductViewModel item = new ProductViewModel()
             {
-                Product = new Product()
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
             };
 
             return View(item);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductViewModel model)
+        public async Task<IActionResult> Create(ProductViewModel item)
         {
             if (ModelState.IsValid)
             {
@@ -198,36 +204,58 @@ namespace SimpleTemplate_Shop.Controllers
                     var uploads = Path.Combine(webRootPath, @"images\products");
                     var extenstion = Path.GetExtension(files[0].FileName);
 
-                    if (model.Product.Image != null)
-                    {
-                        // Update data with image
-                        var imagePath = Path.Combine(webRootPath, model.Product.Image.TrimStart('\\'));
+                    //if (item.Product.Image != null)
+                    //{
+                    //    // Update data with image
+                    //    var imagePath = Path.Combine(webRootPath, item.Product.Image.TrimStart('\\'));
 
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
+                    //    if (System.IO.File.Exists(imagePath))
+                    //    {
+                    //        System.IO.File.Delete(imagePath);
+                    //    }
+                    //}
 
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
                     {
                         await files[0].CopyToAsync(fileStreams);
                     }
 
-                    model.Product.Image = @"\images\products\" + fileName + extenstion;
+                    item.Product.Image = @"\images\products\" + fileName + extenstion;
                 }
+                //else
+                //{
+                //    // Update data without update image
+                //    if (item.Product.Id != 0)
+                //    {
+                //        Product model = await _unitOfWork.Product.Get(item.Product.Id);
+                //        item.Product.Image = model.Image;
+                //    }
+                //}
 
-                if (model.Product.Id == 0)
+                if (item.Product.Id == 0)
                 {
-                    await _unitOfWork.Product.Add(model.Product);
+                    await _unitOfWork.Product.Add(item.Product);
                 }
 
                 _unitOfWork.Save();
 
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                item.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
 
-            return View(model);
+                if (item.Product.Id != 0)
+                {
+                    item.Product = await _unitOfWork.Product.Get(item.Product.Id);
+                }
+            }
+
+            return View(item);
         }
 
         [HttpGet]
@@ -235,7 +263,12 @@ namespace SimpleTemplate_Shop.Controllers
         {
             ProductViewModel item = new ProductViewModel()
             {
-                Product = new Product()
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
             };
 
             item.Product = await _unitOfWork.Product.Get(id);
@@ -284,7 +317,7 @@ namespace SimpleTemplate_Shop.Controllers
                     // Update data without update image
                     if (item.Product.Id != 0)
                     {
-                        var model = await _unitOfWork.Product.Get(item.Product.Id);
+                        Product model = await _unitOfWork.Product.Get(item.Product.Id);
                         item.Product.Image = model.Image;
                     }
                 }
@@ -297,6 +330,12 @@ namespace SimpleTemplate_Shop.Controllers
             }
             else
             {
+                item.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
+
                 if (item.Product.Id != 0)
                 {
                     item.Product = await _unitOfWork.Product.Get(item.Product.Id);

@@ -18,7 +18,7 @@ namespace SimpleTemplate_Shop.Components
             ViewBag.SelectedCategory = RouteData?.Values["category"];
 
             var item = _repository.Product.GetAll()
-                .Select(x => x.Category)
+                .Select(x => x.Category.Name)
                 .Distinct()
                 .OrderBy(x => x);
 

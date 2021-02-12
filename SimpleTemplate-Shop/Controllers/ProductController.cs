@@ -23,7 +23,7 @@ namespace SimpleTemplate_Shop.Controllers
         public async Task<IActionResult> List(int? product, string name, string category, int page = 1,
             SortState sortOrder = SortState.NameAsc)
         {
-            IEnumerable<Product> items = _repository.Product.GetAll().Where(p => category == null || p.Category == category)
+            IEnumerable<Product> items = _repository.Product.GetAll(includeProperties: "Category").Where(p => category == null || p.Category.Name == category)
                 .OrderBy(p => p.Id);
 
             if (!String.IsNullOrEmpty(name))
@@ -40,9 +40,9 @@ namespace SimpleTemplate_Shop.Controllers
                 case SortState.PriceDesc:
                     items = items.OrderByDescending(s => s.ProductPrice); break;
                 case SortState.CategoryAsc:
-                    items = items.OrderBy(s => s.Category); break;
+                    items = items.OrderBy(s => s.Category.Name); break;
                 case SortState.CategoryDesc:
-                    items = items.OrderByDescending(s => s.Category); break;
+                    items = items.OrderByDescending(s => s.Category.Name); break;
                 default:
                     items = items.OrderBy(s => s.Name); break;
             }
@@ -66,7 +66,7 @@ namespace SimpleTemplate_Shop.Controllers
 
         public async Task<ViewResult> Details(int? id)
         {
-            Product product = await _repository.Product.Get(id.Value);
+            var product = _repository.Product.GetFirstOrDefault(x => x.Id == id.Value, includeProperties: "Category");
 
             if (product == null)
             {

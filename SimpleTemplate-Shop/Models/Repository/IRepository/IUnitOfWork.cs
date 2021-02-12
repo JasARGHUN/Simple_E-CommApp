@@ -6,6 +6,7 @@ namespace SimpleTemplate_Shop.Models.Repository.IRepository
     {
         IProductRepository Product { get; }
         ICallBackRepository CallBack { get; }
+        ICategoryRepository Category { get; }
         void Save();
     }
 }

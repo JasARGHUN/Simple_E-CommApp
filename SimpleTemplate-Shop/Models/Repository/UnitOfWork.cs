@@ -11,10 +11,12 @@ namespace SimpleTemplate_Shop.Models.Repository
             _context = context;
             Product = new EFProductRepository(_context);
             CallBack = new CallBackRepository(_context);
+            Category = new CategoryRepository(_context);
         }
 
         public IProductRepository Product { get; private set; }
         public ICallBackRepository CallBack { get; private set; }
+        public ICategoryRepository Category { get; private set; }
 
         public void Dispose()
         {

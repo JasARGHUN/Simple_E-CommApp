@@ -16,7 +16,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Fugiat",
-                        Category = "Category-1",
+                        Category = new Category() { Name ="Category-1" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -36,7 +36,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Est",
-                        Category = "Category-1",
+                        Category = new Category() { Name = "Category-2" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -56,7 +56,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Laborum",
-                        Category = "Category-2",
+                        Category = new Category() { Name = "Category-3" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -76,7 +76,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Velit",
-                        Category = "Category-2",
+                        Category = new Category() { Name = "Category-4" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -96,7 +96,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Cillum",
-                        Category = "Category-3",
+                        Category = new Category() { Name = "Category-5" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -116,7 +116,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                     new Product
                     {
                         Name = "Dolor",
-                        Category = "Category-3",
+                        Category = new Category() { Name = "Category-6" },
                         ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                         " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
@@ -132,148 +132,7 @@ namespace SimpleTemplate_Shop.Infrastructure
                         StorageDevice = "480 SSD",
                         VideoCard = "8",
                         OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Amet",
-                        Category = "Category-4",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 23,
-                        Manufacturer = "Manufacturer-7",
-                        DateOfManufacture = "22.03.2020",
-                        QuantityInStock = 2,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Nostrud",
-                        Category = "Category-4",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 75,
-                        Manufacturer = "Manufacturer-10",
-                        DateOfManufacture = "27.07.2020",
-                        QuantityInStock = 0,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Quis",
-                        Category = "Category-5",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 156,
-                        Manufacturer = "Manufacturer-8",
-                        DateOfManufacture = "11.01.2020",
-                        QuantityInStock = 1,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Cupidatat",
-                        Category = "Category-5",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 285,
-                        Manufacturer = "Manufacturer-9",
-                        DateOfManufacture = "23.06.2020",
-                        QuantityInStock = 0,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Tetur",
-                        Category = "Category-1",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 85,
-                        Manufacturer = "Manufacturer-3",
-                        DateOfManufacture = "13.12.2020",
-                        QuantityInStock = 0,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Scing",
-                        Category = "Category-2",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 185,
-                        Manufacturer = "Manufacturer-4",
-                        DateOfManufacture = "27.10.2020",
-                        QuantityInStock = 5,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
-                    },
-                    new Product
-                    {
-                        Name = "Ut",
-                        Category = "Category-3",
-                        ProductDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
-                        " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt" +
-                        " mollit anim id est laborum.",
-                        ProductPrice = 266,
-                        Manufacturer = "Manufacturer-3",
-                        DateOfManufacture = "12.01.2020",
-                        QuantityInStock = 0,
-                        Type = "Midle Tower",
-                        Processor = "i5-10400f",
-                        RAM = "16",
-                        PowerSupply = "650",
-                        StorageDevice = "480 SSD",
-                        VideoCard = "8",
-                        OperatingSystem = "Windows 10 PRO"
                     }
-
                 );
                 context.SaveChanges();
             }

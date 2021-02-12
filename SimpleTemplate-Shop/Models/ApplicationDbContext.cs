@@ -23,5 +23,6 @@ namespace SimpleTemplate_Shop.Models
         public DbSet<AppSocialAddress> AppSocialAddresses { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
         public DbSet<CallBack> CallBacks { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

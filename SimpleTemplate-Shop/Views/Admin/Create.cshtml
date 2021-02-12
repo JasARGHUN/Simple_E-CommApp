@@ -76,11 +76,12 @@
 
                 <div class="form-group row">
                     <div class="col-4">
-                        Категория
+                        Category
                     </div>
                     <div class="col-8">
-                        <input asp-for="Product.Category" class="form-control" />
-                        <span asp-validation-for="Product.Category" class="text-danger"></span>
+                        @Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList, "-Выберите категорию",
+                       new { @class = "form-control" })
+                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                     </div>
                 </div>
 

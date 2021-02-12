@@ -15,8 +15,6 @@ namespace SimpleTemplate_Shop.Models
         [MaxLength(800, ErrorMessage = "Only 800 characters")]
         public string ProductDescription { get; set; }
 
-        public string Category { get; set; }
-
         [Required(ErrorMessage = "Price field can't be empty...")]
         public int ProductPrice { get; set; }
 
@@ -28,6 +26,12 @@ namespace SimpleTemplate_Shop.Models
 
         [Required(ErrorMessage = "This field can't be empty...")]
         public int QuantityInStock { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
 
         public string Image { get; set; }
 
