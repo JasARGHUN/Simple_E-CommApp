@@ -6,13 +6,17 @@
 }
 
 <div class="container">
-    <p class="mt-3 text-center" style="font-size:2em; font-weight:bolder; text-decoration-line:underline;">User panel</p>
+    <p class="mt-3 text-center" style="font-size:2em; font-weight:bolder; text-decoration-line:underline;">
+        Панель управления: Пользователи
+    </p>
 
     <table class="table" style="font-size:1.5em;">
         <thead>
             <tr>
-                <th scope="col">Account</th>
-                <th scope="col" class="text-right">Action</th>
+                <th scope="col">
+                    Аккаунт
+                </th>
+                <th scope="col" class="text-right"></th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +26,15 @@
                     <td>@user.Email</td>
                     <td class="text-right">
                         <form asp-action="Delete" asp-route-id="@user.Id" method="post">
-                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id" style="font-size:1em;">Edit</a> |
-                            <a class="btn btn-sm btn-warning" asp-action="ChangePassword" asp-route-id="@user.Id" style="font-size:1em;">Change password</a> |
+                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id" style="font-size:1em;">
+                                Редактировать
+                            </a> |
+                            <a class="btn btn-sm btn-warning" asp-action="ChangePassword" asp-route-id="@user.Id" style="font-size:1em;">
+                                Изменить пароль
+                            </a> |
                             <button type="submit" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Delete: @user.Email?')" style="font-size:1em;">
-                                Delete
+                                Удалить
                             </button>
                         </form>
                     </td>
