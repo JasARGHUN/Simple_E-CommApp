@@ -1,6 +1,7 @@
-﻿using SimpleTemplate_Shop.Models.Repository.IRepository;
+﻿using SimpleTemplate_Shop.Models;
+using SimpleTemplate_Shop.Repository.IRepository;
 
-namespace SimpleTemplate_Shop.Models.Repository
+namespace SimpleTemplate_Shop.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

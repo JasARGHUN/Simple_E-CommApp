@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Models;
+using SimpleTemplate_Shop.Repository.IRepository;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimpleTemplate_Shop.Models
+namespace SimpleTemplate_Shop.Repository
 {
     public class EFProductRepository : Repository<Product>, IProductRepository
     {

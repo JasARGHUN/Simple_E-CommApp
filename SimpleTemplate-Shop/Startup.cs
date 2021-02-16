@@ -9,9 +9,9 @@ using SimpleTemplate_Shop.Models;
 using ReflectionIT.Mvc.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using SimpleTemplate_Shop.Models.Repository;
 using SimpleTemplate_Shop.Infrastructure;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
+using SimpleTemplate_Shop.Repository.IRepository;
+using SimpleTemplate_Shop.Repository;
 
 namespace SimpleTemplate_Shop
 {

@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System;
-using SimpleTemplate_Shop.Models.Repository;
 using ReflectionIT.Mvc.Paging;
 using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using SimpleTemplate_Shop.Infrastructure;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SimpleTemplate_Shop.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Controllers
 {

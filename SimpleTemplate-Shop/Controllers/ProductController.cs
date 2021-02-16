@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTemplate_Shop.Models;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
 using SimpleTemplate_Shop.Models.ViewModels;
+using SimpleTemplate_Shop.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.IO;

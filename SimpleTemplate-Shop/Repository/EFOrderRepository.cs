@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Models;
+using SimpleTemplate_Shop.Repository.IRepository;
 
-namespace SimpleTemplate_Shop.Models
+namespace SimpleTemplate_Shop.Repository
 {
     public class EFOrderRepository : IOrderRepository
     {

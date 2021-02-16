@@ -1,7 +1,7 @@
-﻿using SimpleTemplate_Shop.Models.Repository.IRepository;
+﻿using SimpleTemplate_Shop.Models;
 using System.Threading.Tasks;
 
-namespace SimpleTemplate_Shop.Models.Repository
+namespace SimpleTemplate_Shop.Repository.IRepository
 {
     public interface IProductRepository : IRepository<Product>
     {

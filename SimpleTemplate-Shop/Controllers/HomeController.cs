@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SimpleTemplate_Shop.Models;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
 using SimpleTemplate_Shop.Models.ViewModels;
+using SimpleTemplate_Shop.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Controllers
 {

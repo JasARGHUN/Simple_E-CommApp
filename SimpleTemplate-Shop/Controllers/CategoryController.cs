@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleTemplate_Shop.Models;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
 using System.Threading.Tasks;
 using ReflectionIT.Mvc.Paging;
 using Microsoft.AspNetCore.Authorization;
 using SimpleTemplate_Shop.Infrastructure;
 using System.Linq;
+using SimpleTemplate_Shop.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Controllers
 {

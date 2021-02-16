@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Components
 {

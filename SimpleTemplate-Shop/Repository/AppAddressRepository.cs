@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using SimpleTemplate_Shop.Models;
+using SimpleTemplate_Shop.Repository.IRepository;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimpleTemplate_Shop.Models.Repository
+namespace SimpleTemplate_Shop.Repository
 {
     public class AppAddressRepository : IAppAddressRepository
     {

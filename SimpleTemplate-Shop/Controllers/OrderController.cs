@@ -7,7 +7,7 @@ using ReflectionIT.Mvc.Paging;
 using System.Linq;
 using System.Threading.Tasks;
 using SimpleTemplate_Shop.Infrastructure;
-using SimpleTemplate_Shop.Models.Repository;
+using SimpleTemplate_Shop.Repository.IRepository;
 
 namespace SimpleTemplate_Shop.Controllers
 {

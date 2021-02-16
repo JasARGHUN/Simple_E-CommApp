@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleTemplate_Shop.Models;
-using SimpleTemplate_Shop.Models.Repository;
-using SimpleTemplate_Shop.Models.Repository.IRepository;
 using SimpleTemplate_Shop.Models.ViewModels;
+using SimpleTemplate_Shop.Repository.IRepository;
 using System.Threading.Tasks;
 
 namespace SimpleTemplate_Shop.Controllers

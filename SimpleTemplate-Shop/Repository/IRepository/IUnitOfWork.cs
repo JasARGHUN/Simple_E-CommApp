@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleTemplate_Shop.Models.Repository.IRepository
+namespace SimpleTemplate_Shop.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,8 +1,9 @@
-﻿using SimpleTemplate_Shop.Models.Repository.IRepository;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using SimpleTemplate_Shop.Models;
+using SimpleTemplate_Shop.Repository.IRepository;
 
-namespace SimpleTemplate_Shop.Models.Repository
+namespace SimpleTemplate_Shop.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {

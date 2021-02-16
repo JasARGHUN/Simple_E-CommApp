@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace SimpleTemplate_Shop.Models.Repository.IRepository
+namespace SimpleTemplate_Shop.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
